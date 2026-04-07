@@ -2,10 +2,12 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://olalusgroupllc.com
 const API_URL = process.env.NEXT_PUBLIC_SERVER_API;
 
 async function fetchDynamic(path) {
+  if (!API_URL) return [];
   try {
     const res = await fetch(`${API_URL}${path}`, { next: { revalidate: 3600 } });
+    if (!res.ok) return [];
     const data = await res.json();
-    return data.success ? data.data : [];
+    return Array.isArray(data?.data) ? data.data : [];
   } catch {
     return [];
   }
