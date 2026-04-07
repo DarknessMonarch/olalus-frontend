@@ -44,46 +44,6 @@ const DEFAULT_SERVICES = [
     Icon: SupportIcon,
     image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
   },
-    {
-    _id: "4",
-    title: "Home & Community Support",
-    description:
-      "Our homemaker services assist clients with daily tasks including light housekeeping, preparing meals, using medications, shopping for groceries or clothes, and community participation activities that enable independent living.",
-    Icon: SupportIcon,
-    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
-  },
-    {
-    _id: "4",
-    title: "Home & Community Support",
-    description:
-      "Our homemaker services assist clients with daily tasks including light housekeeping, preparing meals, using medications, shopping for groceries or clothes, and community participation activities that enable independent living.",
-    Icon: SupportIcon,
-    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
-  },
-    {
-    _id: "4",
-    title: "Home & Community Support",
-    description:
-      "Our homemaker services assist clients with daily tasks including light housekeeping, preparing meals, using medications, shopping for groceries or clothes, and community participation activities that enable independent living.",
-    Icon: SupportIcon,
-    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
-  },
-    {
-    _id: "4",
-    title: "Home & Community Support",
-    description:
-      "Our homemaker services assist clients with daily tasks including light housekeeping, preparing meals, using medications, shopping for groceries or clothes, and community participation activities that enable independent living.",
-    Icon: SupportIcon,
-    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
-  },
-    {
-    _id: "4",
-    title: "Home & Community Support",
-    description:
-      "Our homemaker services assist clients with daily tasks including light housekeeping, preparing meals, using medications, shopping for groceries or clothes, and community participation activities that enable independent living.",
-    Icon: SupportIcon,
-    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
-  },
    
 ];
 

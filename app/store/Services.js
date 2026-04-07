@@ -9,7 +9,7 @@ export const useServicesStore = create((set) => ({
   fetchServices: async () => {
     try {
       set({ loading: true });
-      const res = await fetch(`${SERVER_API}/service`);
+      const res = await fetch(`${SERVER_API}/services`);
       const data = await res.json();
       if (data.success) set({ services: data.data });
     } catch {

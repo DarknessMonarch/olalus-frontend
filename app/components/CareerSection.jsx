@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import Banner from "@/public/assets/banner.png";
 import { useJobsStore } from "@/app/store/Jobs";
 import AppImage from "@/app/components/ui/AppImage";
 import SectionLabel from "@/app/components/ui/SectionLabel";
@@ -17,33 +18,6 @@ const TYPE_CLASS = {
   "part-time": styles.badgePart,
   "contract": styles.badgeContract,
 };
-
-const DEFAULT_JOBS = [
-  {
-    _id: "1",
-    title: "Registered Nurse (RN)",
-    type: "full-time",
-    location: "Philadelphia, PA",
-    description: "Provide skilled nursing care to clients in their homes. Assess patient conditions, administer medications, and coordinate with the care team.",
-    requirements: ["Valid PA RN license", "Minimum 1 year home health experience", "Strong communication skills"],
-  },
-  {
-    _id: "2",
-    title: "Home Health Aide (HHA)",
-    type: "part-time",
-    location: "Pennsylvania (Multiple Counties)",
-    description: "Assist clients with activities of daily living including personal care, light housekeeping, and companionship under the direction of a nurse.",
-    requirements: ["HHA certification", "Compassionate and reliable", "Valid driver's license"],
-  },
-  {
-    _id: "3",
-    title: "Physical Therapist",
-    type: "full-time",
-    location: "Lancaster, PA",
-    description: "Develop and implement individualised therapy plans to help clients regain mobility and independence in their homes.",
-    requirements: ["PA PT license", "Experience with geriatric patients", "Excellent documentation skills"],
-  },
-];
 
 export default function CareerSection() {
   const { jobs, loading, fetchJobs } = useJobsStore();
@@ -66,21 +40,18 @@ export default function CareerSection() {
     );
   }
 
-  const displayJobs = jobs.length > 0 ? jobs : DEFAULT_JOBS;
-
   return (
     <section className={styles.careerSection}>
       <div className={styles.heroBanner}>
         <div className={styles.heroContent}>
           <SectionLabel text="Careers" />
-          <h1 className={styles.heroHeading}>Wanna Be Part<br />Of The Family?</h1>
+          <h1 className={styles.heroHeading}>Wanna Be Part Of The Family?</h1>
           <p className={styles.heroText}>
-            We thank you for your interest in joining our staff. Olalus Community Healthcare Services
-            is always in search of growth through people. Explore our open positions below.
+            We thank you for your interest in joining our staff. We are always in search of growth through people. Explore our open positions below.
           </p>
           <div className={styles.heroStats}>
             <div className={styles.stat}>
-              <span className={styles.statNum}>{displayJobs.length}+</span>
+              <span className={styles.statNum}>{jobs.length}+</span>
               <span className={styles.statLabel}>Open Positions</span>
             </div>
             <div className={styles.statDivider} />
@@ -92,7 +63,7 @@ export default function CareerSection() {
         </div>
         <div className={styles.heroImageWrap}>
           <AppImage
-            src="https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg"
+            src={Banner}
             alt="Healthcare team"
             sizes="380px"
           />
@@ -102,14 +73,14 @@ export default function CareerSection() {
       <div className={styles.jobsArea}>
         <h2 className={styles.jobsHeading}>Open Positions</h2>
 
-        {displayJobs.length === 0 ? (
+        {jobs.length === 0 ? (
           <div className={styles.empty}>
             <WorkIcon className={styles.emptyIcon} />
-            <p>No open positions at the moment. Check back soon!</p>
+            <p>No job post available at the moment. Check back soon!</p>
           </div>
         ) : (
           <div className={styles.jobGrid}>
-            {displayJobs.map((job, i) => (
+            {jobs.map((job, i) => (
               <Link key={job._id || i} href={`/career/${job._id}`} className={styles.jobCard}>
                 <div className={styles.jobCardTop}>
                   <span className={`${styles.typeBadge} ${TYPE_CLASS[job.type] || styles.badgeFull}`}>

@@ -4,6 +4,7 @@ import Script from "next/script";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import ChatWidget from "@/app/components/ChatWidget";
+import RouteAnimator from "@/app/components/RouteAnimator";
 import styles from "@/app/styles/app.module.css";
 import { Inter, Poppins } from "next/font/google";
 
@@ -265,7 +266,8 @@ export default function RootLayout({ children }) {
             },
           }}
         />
-        <div className={styles.appLayout}>
+        <RouteAnimator />
+        <div id="app-layout" className={styles.appLayout}>
           <Navbar />
           {children}
           <Footer />

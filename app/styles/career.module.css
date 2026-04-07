@@ -5,7 +5,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    padding: var(--padding-lg);
+    padding: var(--padding-lg) 0;
     max-width: var(--app-max-width);
     background: var(--background-color);
   }
@@ -263,6 +263,7 @@
   }
 
   .empty p {
+    text-align: center;
     font-size: var(--font-size-xs);
   }
 

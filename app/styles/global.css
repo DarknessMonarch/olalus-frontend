@@ -15,6 +15,7 @@
     --gold-text-on-gradient: #111827;
     --gradient-primary: linear-gradient(120deg, #d19e1d, #ffd86e, #e3a812);
 
+
     --shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     --shadow-medium: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     --shadow-heavy: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -276,6 +277,20 @@
     100% { background-position: -200% 0; }
   }
 
+  /* ─── Page fade-in ──────────────────────────────────────────── */
+  @keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-enter {
+    animation: pageFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-enter { animation: none; }
+  }
+
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--gold-dark) var(--gold-tint);
@@ -317,8 +332,16 @@
     border: 0;
   }
 
-  /* Hide Google Translate toolbar and prevent body offset */
-  .goog-te-banner-frame,
+  /* Hide Google Translate toolbar without breaking the translation engine.
+     display:none kills the iframe — use off-screen positioning instead.      */
+  .goog-te-banner-frame {
+    position: fixed !important;
+    top: -9999px !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
   .goog-te-balloon-frame,
   .goog-te-menu-frame,
   #goog-gt-tt,
@@ -328,10 +351,6 @@
 
   body {
     top: 0 !important;
-  }
-
-  .skiptranslate > iframe {
-    display: none !important;
   }
 }
 
@@ -357,3 +376,10 @@
   h3 { font-size: calc(var(--font-size-xxxl)   * 1.2); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

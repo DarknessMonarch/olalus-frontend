@@ -9,7 +9,7 @@ export const usePartnersStore = create((set) => ({
   fetchPartners: async () => {
     try {
       set({ loading: true });
-      const res = await fetch(`${SERVER_API}/partner`);
+      const res = await fetch(`${SERVER_API}/partners`);
       const data = await res.json();
       if (data.success) set({ partners: data.data });
     } catch {

@@ -9,7 +9,7 @@ export const useResourcesStore = create((set) => ({
   fetchResources: async () => {
     try {
       set({ loading: true });
-      const res = await fetch(`${SERVER_API}/resource`);
+      const res = await fetch(`${SERVER_API}/resources`);
       const data = await res.json();
       if (data.success) set({ resources: data.data });
     } catch {
@@ -20,7 +20,7 @@ export const useResourcesStore = create((set) => ({
 
   fetchBySlug: async (slug) => {
     try {
-      const res = await fetch(`${SERVER_API}/resource/slug/${slug}`);
+      const res = await fetch(`${SERVER_API}/resources/slug/${slug}`);
       const data = await res.json();
       if (data.success) return data.data;
       return null;

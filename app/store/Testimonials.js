@@ -9,7 +9,7 @@ export const useTestimonialsStore = create((set) => ({
   fetchTestimonials: async () => {
     try {
       set({ loading: true });
-      const res = await fetch(`${SERVER_API}/testimonial`);
+      const res = await fetch(`${SERVER_API}/testimonials`);
       const data = await res.json();
       if (data.success) set({ testimonials: data.data });
     } catch {

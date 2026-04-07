@@ -10,7 +10,7 @@ export const useJobsStore = create((set) => ({
   fetchJobs: async () => {
     try {
       set({ loading: true });
-      const res = await fetch(`${SERVER_API}/job`);
+      const res = await fetch(`${SERVER_API}/jobs`);
       const data = await res.json();
       if (data.success) set({ jobs: data.data });
     } catch {
@@ -23,7 +23,7 @@ export const useJobsStore = create((set) => ({
   fetchJobById: async (id) => {
     try {
       set({ loading: true, currentJob: null });
-      const res = await fetch(`${SERVER_API}/job/${id}`);
+      const res = await fetch(`${SERVER_API}/jobs/${id}`);
       const data = await res.json();
       if (data.success) {
         set({ currentJob: data.data });

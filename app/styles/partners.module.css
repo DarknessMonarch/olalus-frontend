@@ -33,6 +33,14 @@
     opacity: 0.7;
   }
 
+  .partnerLogo {
+    position: relative;
+    width: 100px;
+    height: 44px;
+    flex-shrink: 0;
+    opacity: 0.75;
+  }
+
   .separator {
     font-size: var(--font-size-xxl);
     color: var(--gold-mid);
