@@ -19,36 +19,13 @@ const TYPE_META = {
   "therapy-portal": { icon: PortalIcon, label: "Therapy Portal" },
 };
 
-const DEFAULT_RESOURCES = [
-  {
-    _id: "1",
-    slug: "client-forms",
-    title: "Client Forms",
-    description: "Download intake forms, consent documents, and service agreements for new and existing clients. All forms are available in accessible formats.",
-    type: "client-form",
-  },
-  {
-    _id: "2",
-    slug: "service-guide",
-    title: "Service Guide",
-    description: "Full overview of all services offered, eligibility requirements, and how to get started with personalised home care.",
-    type: "service-guide",
-  },
-  {
-    _id: "3",
-    slug: "therapy-portal",
-    title: "Therapy Portal",
-    description: "Access our therapy portal for session tracking, documentation, and communication with your care team.",
-    type: "therapy-portal",
-  },
-];
 
 export default function ResourcesSection() {
   const { resources, loading, fetchResources } = useResourcesStore();
 
   useEffect(() => { fetchResources(); }, []);
 
-  if (loading && resources.length === 0) {
+  if (resources.length === 0) {
     return (
       <section className={styles.resourcesSection}>
         <div className={styles.header}>
@@ -64,7 +41,7 @@ export default function ResourcesSection() {
     );
   }
 
-  const displayResources = resources.length > 0 ? resources : DEFAULT_RESOURCES;
+  const displayResources = resources;
 
   return (
     <section className={styles.resourcesSection}>

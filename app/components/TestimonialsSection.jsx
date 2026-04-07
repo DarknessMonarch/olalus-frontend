@@ -8,14 +8,6 @@ import { FaStar as StarIcon } from "react-icons/fa";
 import { useTestimonialsStore } from "@/app/store/Testimonials";
 import { useCommentsStore } from "@/app/store/Comments";
 
-const DEFAULT_TESTIMONIALS = [
-  { _id: "1", name: "Lauren Willis", content: "Olalus has been an absolute blessing for our family. The caregivers are professional, compassionate, and truly dedicated to my mother's wellbeing. We couldn't ask for better care.", rating: 5, position: "Family Member" },
-  { _id: "2", name: "James Carter", content: "Outstanding service from start to finish. The team at Olalus went above and beyond to ensure my father received the best possible care in the comfort of his own home.", rating: 5, position: "Client's Son" },
-  { _id: "3", name: "Maria Thompson", content: "I am so grateful for the Olalus team. They treated my grandmother with the utmost respect and dignity. Their dedication to quality care truly sets them apart.", rating: 5, position: "Client's Granddaughter" },
-  { _id: "4", name: "Robert Johnson", content: "The nurses and aides from Olalus have been exceptional. They are punctual, caring, and always go the extra mile. Our family has peace of mind knowing dad is in good hands.", rating: 5, position: "Client's Son" },
-  { _id: "5", name: "Sandra Williams", content: "From our very first consultation, Olalus demonstrated professionalism and genuine care. The personalised care plan they developed for my mother has made a world of difference.", rating: 5, position: "Family Member" },
-  { _id: "6", name: "David Chen", content: "Highly recommend Olalus to anyone seeking quality home care. Their staff is well-trained, compassionate, and always available when needed. Truly exceptional service.", rating: 5, position: "Client's Nephew" },
-];
 
 function TestimonialCard({ t }) {
   return (
@@ -56,11 +48,10 @@ export default function TestimonialsSection() {
   }, []);
 
   const all = [...approvedComments, ...testimonials];
-  const source = all.length >= 3 ? all : DEFAULT_TESTIMONIALS;
-  const row1 = [...source, ...source, ...source];
-  const row2 = [...source, ...source, ...source];
+  const row1 = [...all, ...all, ...all];
+  const row2 = [...all, ...all, ...all];
 
-  if (loading && all.length === 0) {
+  if (all.length === 0) {
     return (
       <section className={styles.testimonialsSection}>
         <div className={styles.header}>

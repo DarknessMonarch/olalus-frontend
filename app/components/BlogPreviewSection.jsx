@@ -9,38 +9,6 @@ import SectionLabel from "@/app/components/ui/SectionLabel";
 import styles from "@/app/styles/blogPreview.module.css";
 import { FiArrowRight as ArrowRight, FiClock as ClockIcon, FiUser as UserIcon } from "react-icons/fi";
 
-const DEFAULT_BLOGS = [
-  {
-    _id: "1",
-    title: "Understanding Home Health Care: What to Expect",
-    content: "Home health care is a wide range of services that can be given in your home for an illness or injury. Learn what to expect from our dedicated care team.",
-    author: "Olalus Team",
-    category: "Home Care",
-    readTime: "5 min read",
-    publishedAt: "2024-01-15",
-    image: "https://images.pexels.com/photos/7551637/pexels-photo-7551637.jpeg",
-  },
-  {
-    _id: "2",
-    title: "Tips for Family Caregivers: Preventing Burnout",
-    content: "Caring for an elderly or disabled family member is deeply meaningful but often exhausting. Here are practical strategies to prevent caregiver burnout.",
-    author: "Healthcare Staff",
-    category: "Caregiver Tips",
-    readTime: "4 min read",
-    publishedAt: "2024-02-10",
-    image: "https://images.pexels.com/photos/5327584/pexels-photo-5327584.jpeg",
-  },
-  {
-    _id: "3",
-    title: "Medicare and Home Health Benefits Explained",
-    content: "Medicare Part A and Part B cover eligible home health services if your doctor orders them. Learn what is covered and how to qualify for these benefits.",
-    author: "Billing Team",
-    category: "Insurance",
-    readTime: "6 min read",
-    publishedAt: "2024-03-05",
-    image: "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg",
-  },
-];
 
 const stripHtml = (html = "") => html.replace(/<[^>]*>/g, "");
 const formatDate = (date) =>
@@ -54,10 +22,9 @@ export default function BlogPreviewSection() {
     fetchBlogs();
   }, []);
 
-  const source = blogs.length > 0 ? blogs : DEFAULT_BLOGS;
-  const preview = source.slice(0, 3);
+  const preview = blogs.slice(0, 3);
 
-  if (loading && blogs.length === 0) {
+  if (blogs.length === 0) {
     return (
       <section className={styles.blogPreviewSection}>
         <div className={styles.header}>

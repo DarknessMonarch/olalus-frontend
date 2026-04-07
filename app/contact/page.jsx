@@ -13,7 +13,6 @@ export default function ContactPage() {
     <>
       <ContactSection />
       <TestimonialsSection />
-      <FaqSection />
       <SubscribeSection />
     </>
   );

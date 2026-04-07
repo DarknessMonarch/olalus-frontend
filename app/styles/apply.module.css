@@ -2,7 +2,6 @@
   .applyPage {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     background: var(--background-color);
   }
 
@@ -261,7 +260,9 @@
 
   .applyBody {
     padding: var(--padding-xxl) 60px;
-    max-width: 880px;
+    max-width: 920px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .formRow {
@@ -279,5 +280,20 @@
   .formActions {
     flex-direction: row;
     max-width: 400px;
+  }
+}
+
+@media only screen and (min-width: 64.063em) {
+  .applyHeader {
+    padding: var(--padding-xxl) 80px;
+  }
+
+  .applyBody {
+    padding: var(--padding-xxl) 80px;
+    max-width: 1080px;
+  }
+
+  .educationRow {
+    grid-template-columns: 180px 1fr 1fr 90px 160px;
   }
 }

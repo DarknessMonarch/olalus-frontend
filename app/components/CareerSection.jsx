@@ -12,6 +12,7 @@ import {
   MdOutlineWorkOutline as WorkIcon,
 } from "react-icons/md";
 import { FiArrowRight as ArrowRight, FiClock as ClockIcon } from "react-icons/fi";
+import EmptyState from "@/app/components/ui/EmptyState";
 
 const TYPE_CLASS = {
   "full-time": styles.badgeFull,
@@ -74,10 +75,11 @@ export default function CareerSection() {
         <h2 className={styles.jobsHeading}>Open Positions</h2>
 
         {jobs.length === 0 ? (
-          <div className={styles.empty}>
-            <WorkIcon className={styles.emptyIcon} />
-            <p>No job post available at the moment. Check back soon!</p>
-          </div>
+          <EmptyState
+            icon={WorkIcon}
+            title="No open positions yet"
+            description="We're always growing — check back soon for new opportunities!"
+          />
         ) : (
           <div className={styles.jobGrid}>
             {jobs.map((job, i) => (
