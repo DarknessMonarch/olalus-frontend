@@ -34,7 +34,20 @@ export default function ResourcesSection() {
         </div>
         <div className={styles.grid}>
           {[1, 2, 3].map((i) => (
-            <div key={i} className={`${styles.skeletonCard} skeleton`} />
+            <div key={i} className={styles.skeletonCard}>
+              <div className={styles.skeletonCardTop}>
+                <div className={`${styles.skeletonIcon} skeleton`} />
+                <div className={`${styles.skeletonBadge} skeleton`} />
+              </div>
+              <div className={styles.skeletonCardBody}>
+                <div className={`${styles.skeletonTitle} skeleton`} />
+                <div className={`${styles.skeletonLine} skeleton`} />
+                <div className={`${styles.skeletonLineShort} skeleton`} />
+              </div>
+              <div className={styles.skeletonCardFooter}>
+                <div className={`${styles.skeletonFooterLine} skeleton`} />
+              </div>
+            </div>
           ))}
         </div>
       </section>
