@@ -184,6 +184,10 @@
     border-bottom-left-radius: 4px;
   }
 
+  .botBubble p {
+    text-align: start;
+  }
+
   .typing {
     display: flex;
     align-items: center;
