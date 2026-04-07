@@ -1,0 +1,14 @@
+@media screen {
+  .appImage {
+    object-fit: cover;
+    border-radius: inherit;
+    object-position: top center;
+  }
+
+  .imageSkeleton {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 1;
+  }
+}

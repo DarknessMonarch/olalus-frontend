@@ -1,0 +1,112 @@
+@media screen {
+  .notFound {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: var(--padding-xxl) var(--padding-lg);
+    min-height: 70vh;
+    overflow: hidden;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+    max-width: 420px;
+    z-index: 1;
+  }
+
+  .code {
+    font-size: 6rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .heading {
+    font-size: var(--font-size-xxl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+    margin: 0;
+  }
+
+  .sub {
+    font-size: var(--font-size-xs);
+    color: var(--muted-color);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .btn {
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    padding: var(--padding-md) var(--padding-xxl);
+    border-radius: var(--radius-circle);
+    background: var(--gradient-primary);
+    color: var(--gold-text-on-gradient);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    margin-top: 8px;
+    transition: opacity var(--transition-normal);
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    opacity: 0.85;
+  }
+
+  .btnIcon {
+    font-size: 18px;
+  }
+
+  .imageWrap {
+    position: relative;
+    width: 240px;
+    height: 320px;
+    flex-shrink: 0;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .notFound {
+    flex-direction: row;
+    gap: 60px;
+    justify-content: center;
+    padding: var(--padding-xxl) 60px;
+  }
+
+  .content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .code {
+    font-size: 8rem;
+  }
+
+  .heading {
+    font-size: var(--font-size-xxxl);
+  }
+
+  .imageWrap {
+    width: 340px;
+    height: 460px;
+  }
+}
+
+@media only screen and (min-width: 64.063em) {
+  .imageWrap {
+    width: 400px;
+    height: 540px;
+  }
+}

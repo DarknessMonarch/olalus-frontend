@@ -1,0 +1,52 @@
+@media screen {
+  .sectionLabelWrapper {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .sectionLabel {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 2px;
+    color: var(--gold-accent);
+    text-transform: uppercase;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-light);
+  }
+
+  .labelLine {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: var(--gradient-primary);
+    flex-shrink: 0;
+  }
+
+  .sectionLabelWrapper h2 {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .sectionLabelWrapper {
+    align-items: start;
+  }
+
+  .sectionLabelWrapper h2 {
+    text-align: start;
+  }
+
+  .center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .center h2 {
+    text-align: center;
+  }
+}

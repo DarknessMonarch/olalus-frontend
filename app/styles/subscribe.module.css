@@ -1,0 +1,119 @@
+@media screen {
+  .subscribeSection {
+    width: 100%;
+    border-radius: var(--radius-xxl);
+    background: var(--gradient-primary);
+  }
+
+  .subscribeInner {
+    width: 100%;
+    max-width: var(--app-max-width);
+    margin-inline: auto;
+    padding: 40px var(--padding-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .subscribeLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .subscribeLabel {
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-medium);
+    color: var(--gold-text-dark);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+  }
+
+  .subscribeHeading {
+    font-size: var(--font-size-xxxl);
+    font-weight: var(--font-weight-bold);
+    color: var(--gold-text-on-gradient);
+    line-height: var(--leading-tight);
+    margin: 0;
+  }
+
+  .subscribeForm {
+    display: flex;
+    align-items: center;
+    border-radius: var(--radius-circle);
+    border: 1.5px solid rgba(17, 24, 39, 0.25);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.35);
+    max-width: 420px;
+    width: 100%;
+  }
+
+  .subscribeInput {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    outline: none;
+    font-size: var(--font-size-xs);
+    color: var(--primary-color);
+    background: transparent;
+    min-width: 0;
+  }
+
+  .subscribeInput::placeholder {
+    color: rgba(17, 24, 39, 0.5);
+  }
+
+  .subscribeBtn {
+    padding: 12px 20px;
+    background: var(--primary-color);
+    color: var(--gold-mid);
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-radius: var(--radius-circle);
+    margin: 4px;
+    transition: opacity var(--transition-normal);
+    flex-shrink: 0;
+  }
+
+  .subscribeBtn:hover {
+    opacity: 0.85;
+  }
+
+  .subscribeBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .subscribeInner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 48px 60px;
+    gap: 40px;
+  }
+
+  .subscribeLeft {
+    flex-shrink: 0;
+  }
+
+  .subscribeForm {
+    max-width: 460px;
+  }
+}
+
+@media only screen and (min-width: 64.063em) {
+  .subscribeInner {
+    padding: 56px 80px;
+  }
+
+  .subscribeHeading {
+    font-size: var(--font-size-xxxxl);
+  }
+}

@@ -1,0 +1,86 @@
+@media screen {
+  .loadingComponent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--padding-xl);
+    background-color: var(--background-color);
+    z-index: 500;
+  }
+
+  .logoWrap {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ringOuter {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: var(--gold-dark);
+    border-right-color: var(--gold-dark);
+    animation: spinCW 1s linear infinite;
+  }
+
+  .ringMid {
+    position: absolute;
+    inset: 10px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-bottom-color: var(--gold-mid);
+    border-left-color: var(--gold-mid);
+    animation: spinCCW 0.75s linear infinite;
+  }
+
+  .glow {
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(209, 158, 29, 0.18) 0%, transparent 70%);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .logo {
+    border-radius: var(--radius-circle);
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
+
+  .loadingText {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--gold-dark);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    animation: fadeInOut 1.5s ease-in-out infinite;
+    text-align: center;
+  }
+
+  @keyframes spinCW {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes spinCCW {
+    to { transform: rotate(-360deg); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.9); }
+    50%       { opacity: 1;   transform: scale(1.1); }
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.35; }
+    50%       { opacity: 1; }
+  }
+}

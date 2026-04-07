@@ -1,0 +1,196 @@
+@media screen {
+  .aboutContent {
+    gap: 60px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: var(--app-max-width);
+  }
+
+  .aboutLeft {
+    flex: 50%;
+    min-height: 500px;
+    position: relative;
+    border-radius: var(--radius-xl);
+  }
+
+  .card {
+    z-index: 10;
+    height: 100px;
+    width: 200px;
+    display: flex;
+    padding: 10px;
+    position: absolute;
+    box-shadow: var(--shadow-heavy);
+    border-radius: var(--radius-lg);
+    background-color: var(--background-color);
+  }
+
+  .cardTop {
+    top: 20px;
+    right: -25px;
+  }
+
+  .cardBottom {
+    bottom: 20px;
+    left: -25px;
+  }
+
+  .cardStat {
+    flex: 60%;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cardStat h1 {
+    color: var(--gold-accent);
+    font-size: var(--font-size-xxl);
+  }
+
+  .cardStat span {
+    font-weight: var(--font-weight-light);
+    font-size: var(--font-size-xxs);
+    color: var(--gold-accent);
+  }
+
+  .cardicon {
+    flex: 40%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: inherit;
+    justify-content: center;
+    color: var(---gold-text-on-gradient);
+    font-size: var(--font-size-xxl);
+    background: var(--gradient-primary);
+  }
+
+  .aboutRight {
+    gap: 10px;
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .checkList {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .checkItem {
+    gap: 10px;
+    display: flex;
+    align-items: flex-start;
+    font-size: var(--font-size-xs);
+  }
+
+  .checkIcon {
+    flex-shrink: 0;
+    font-size: var(--font-size-lg);
+  }
+
+  .aboutMission {
+    gap: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--padding-xs);
+    border-radius: var(--radius-xxl);
+    background-color: var(--light-color);
+
+  }
+
+  .aboutMissionInner {
+    gap: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .aboutRow {
+    gap: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .aboutImage {
+    min-height: 500px;
+    position: relative;
+    border-radius: var(--radius-xxxl);
+  }
+
+  .aboutMissionCard {
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-xxxl);
+    background-color: var(--background-color);
+  }
+
+  .aboutMissionCardHeader {
+    padding: var(--padding-xl);
+  }
+
+  .aboutMissionCardInner {
+    gap: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: inherit;
+    padding: var(--padding-xl);
+    box-shadow: var(--shadow-medium);
+    background-color: var(--background-color);
+  }
+
+  .aboutMissionCardInner li {
+    gap: 10px;
+    display: flex;
+    font-size: var(--font-size-xs);
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .aboutContent {
+    flex-direction: row;
+    align-items: center;
+    min-height: var(--section-min-height);
+  }
+
+  .card {
+    height: 100px;
+    width: 250px;
+  }
+
+  .cardTop {
+    right: -50px;
+  }
+
+  .cardBottom {
+    left: -50px;
+  }
+
+  .aboutRow {
+    flex-direction: row;
+  }
+
+  .aboutMission {
+    padding: 10%;
+  }
+
+  .aboutMissionInner {
+    height: 100%;
+  }
+
+  .aboutImage {
+    flex: 50%;
+    min-height: auto;
+  }
+}

@@ -1,0 +1,125 @@
+@media screen {
+  .wrap {
+    height: 100%;
+    min-height: 50px;
+    position: relative;
+    width: fit-content;
+  }
+
+  .trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: inherit;
+    padding: 0 14px;
+    border: none;
+    border-radius: var(--radius-circle);
+    background: var(--light-color);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color);
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .trigger:hover {
+    background: var(--dark-color);
+  }
+
+  .globe {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: var(--primary-color);
+  }
+
+  .label {
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-color);
+  }
+
+  .chevron {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    color: var(--primary-color);
+    transition: transform 0.2s ease;
+  }
+
+  .chevronOpen {
+    transform: rotate(180deg);
+  }
+
+  /* Dropdown panel */
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 9999;
+    background: var(--background-color);
+    border: 1px solid var(--dark-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 170px;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 9px 12px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-xxs);
+    color: var(--primary-color);
+    text-align: left;
+    transition: background 0.1s;
+    width: 100%;
+  }
+
+  .option:hover {
+    background: var(--light-color);
+  }
+
+  .optionActive {
+    background: var(--light-color);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .checkIcon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    color: var(--secondary-color);
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .wrap {
+    width: 100%;
+  }
+
+  .trigger {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dropdown {
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+}

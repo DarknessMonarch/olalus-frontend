@@ -1,0 +1,16 @@
+@media screen {
+  .appLayout {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    gap: 10px;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    overflow: hidden;
+    overflow-y: auto;
+    position: fixed;
+    flex-direction: column;
+  }
+}

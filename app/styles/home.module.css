@@ -1,0 +1,561 @@
+@media screen {
+  /* ── Glass utility classes ─────────────────────────────────────── */
+  .glass {
+    backdrop-filter: blur(10px) saturate(1.1) brightness(1.05);
+    -webkit-backdrop-filter: blur(10px) saturate(1.1) brightness(1.05);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), inset 0 -10px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .glassCircle {
+    border-radius: var(--radius-circle);
+  }
+
+  .glassPill {
+    border-radius: var(--radius-circle);
+  }
+
+  .glassPanel {
+    border-radius: var(--radius-xl);
+  }
+
+  .glassCard {
+    border-radius: var(--radius-xxxl);
+  }
+  /* ─────────────────────────────────────────────────────────────── */
+
+  .homeSection {
+    width: 100%;
+    padding: 10px;
+    position: relative;
+    border-radius: var(--radius-xxl);
+    height: calc(100% - var(--partner-height));
+  }
+
+  .heroImageWrapper {
+    inset: 0;
+    position: absolute;
+  }
+
+  .heroImageWrapper::after {
+    content: "";
+    inset: 0;
+    position: absolute;
+    border-radius: var(--radius-xxl);
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .heroImage {
+    border-radius: var(--radius-xxl);
+  }
+
+  .overlay {
+    gap: 20px;
+    z-index: 9;
+    height: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    border-radius: var(--radius-xxl);
+    justify-content: space-between;
+  }
+
+  .topContent {
+    display: flex;
+    padding-top: 40px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .supportCircle {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    padding: 4px;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-circle);
+    border: 2px solid var(--background-color);
+  }
+
+  .supportText {
+    gap: 4px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--background-color);
+  }
+
+  .supportText h1 {
+    font-size: var(--font-size-xxl);
+    color: var(--background-color);
+  }
+
+  .supportText span {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-light);
+  }
+
+  .middleContent {
+    gap: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  .middleContentTop {
+    gap: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .qualityAssurance {
+    width: fit-content;
+    color: var(--background-color);
+    border-radius: var(--radius-circle);
+  }
+
+  .qualityAssuranceContent {
+    gap: 5px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    border-radius: inherit;
+  }
+
+  .qualityAssurance span {
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-light);
+  }
+
+  .verifiedIcon {
+    font-size: var(--font-size-xxl);
+  }
+
+  .heroContent {
+    border-radius: var(--radius-xl);
+  }
+
+  .heroContentInner {
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: inherit;
+
+    color: var(--background-color);
+  }
+
+  .heroContentInner h1 {
+    color: var(--background-color);
+    font-size: var(--font-size-xxl);
+  }
+
+  .heroContentInner p {
+    color: var(--background-color);
+    font-size: var(--font-size-md);
+  }
+
+  .actionsRow {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exploreBtn {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    justify-content: center;
+    padding: var(--padding-lg);
+    color: var(--primary-color);
+    font-size: var(--font-size-xs);
+    border-radius: var(--radius-circle);
+    background: var(--gradient-primary);
+    font-weight: var(--font-weight-semibold);
+    transition: opacity var(--transition-normal);
+  }
+
+  .exploreBtn:hover {
+    color: var(--background-color);
+  }
+
+  .arrowIcon {
+    font-size: var(--font-size-xs);
+  }
+
+  .phoneBtn {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    padding: var(--padding-md);
+    color: var(--background-color);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-light);
+    white-space: nowrap;
+  }
+
+  .phoneIconWrap {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-circle);
+  }
+
+  .socialProof {
+    gap: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avatarStack {
+    display: flex;
+  }
+
+  .avatarItem {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-circle);
+    border: 2px solid var(--background-color);
+    margin-right: -10px;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xxs);
+    color: var(--primary-color);
+    flex-shrink: 0;
+  }
+
+  .bookAvatarInitial {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-circle);
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    color: var(--primary-color);
+    flex-shrink: 0;
+  }
+
+  .proofText {
+    gap: 2px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 14px;
+  }
+
+  .proofCount {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--background-color);
+  }
+
+  .stars {
+    gap: 4px;
+    display: flex;
+    align-items: center;
+    color: var(--background-color);
+  }
+
+  .starIcon {
+    color: var(--gold-mid);
+    font-size: 12px;
+  }
+
+  .stars span {
+    font-size: var(--font-size-xxs);
+    color: var(--background-color);
+  }
+
+  .appointmentCard {
+    gap: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stackTop {
+    width: 100%;
+  }
+
+  .bookAppointment {
+    gap: 10px;
+    width: 100%;
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    padding: var(--padding-sm);
+    justify-content: space-between;
+    color: var(--background-color);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .bookAvatarWrap {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    border-radius: var(--radius-circle);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .bookArrow {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    color: var(--gold-dark);
+    justify-content: center;
+    border-radius: var(--radius-circle);
+    background: var(--background-color);
+  }
+
+  .stackBottom {
+    width: 100%;
+  }
+
+  .stackBottom .dedicatedCard {
+    min-height: 100px;
+  }
+
+  .dedicatedCard {
+    gap: 4px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding-md);
+    color: var(--background-color);
+  }
+
+  .dedicatedText {
+    flex: 1;
+    line-height: 1.4;
+    color: var(--background-color);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-light);
+  }
+
+  .dedicatedDots {
+    gap: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dedicatedDotActive {
+    height: 4px;
+    width: 24px;
+    border-radius: var(--radius-circle);
+    background: var(--background-color);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition:
+      width var(--transition-normal),
+      opacity var(--transition-normal);
+  }
+
+  .dedicatedDot {
+    height: 4px;
+    width: 8px;
+    border-radius: var(--radius-circle);
+    background: var(--background-color);
+    opacity: 0.4;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition:
+      width var(--transition-normal),
+      opacity var(--transition-normal);
+  }
+
+  .dedicatedDot:hover {
+    opacity: 0.7;
+  }
+
+  .backCardContainer {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .backCard {
+    position: relative;
+    height: 20px;
+    width: 90%;
+    z-index: -1;
+    bottom: 10px;
+  }
+
+  .backCardin {
+    position: relative;
+    height: 20px;
+    width: 80%;
+    bottom: 18px;
+    z-index: -2;
+  }
+
+  .bottomContent {
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+  }
+
+  .bannerDots {
+    gap: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  .dot {
+    width: 80px;
+    height: 4px;
+    border: none;
+    border-radius: var(--radius-circle);
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    padding: 0;
+    transition: background var(--transition-normal);
+  }
+
+  .dotActive {
+    background: var(--background-color);
+  }
+
+  .socialIcons {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .socialIcon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-circle);
+    color: var(--background-color);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    font-size: var(--font-size-xs);
+    transition: background var(--transition-normal);
+  }
+
+  .socialIcon:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .homeSectionWrapper {
+    min-height: calc(100% - var(--navbar-height));
+  }
+
+  .homeSection {
+    padding: 20px;
+  }
+
+  .overlay {
+    gap: 10px;
+  }
+
+  .supportCircle {
+    width: 140px;
+    height: 140px;
+  }
+
+  .supportText {
+    gap: 4px;
+    height: 120px;
+    width: 120px;
+  }
+
+  .supportText h1 {
+    font-size: var(--font-size-xxxl);
+  }
+
+  .supportText span {
+    font-size: var(--font-size-md);
+  }
+
+  .middleContent {
+    gap: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .qualityAssuranceContent {
+    padding: 10px 20px;
+  }
+
+  .qualityAssurance span {
+    font-size: var(--font-size-xs);
+  }
+
+  .heroContentInner {
+    height: auto;
+    padding: 20px;
+    min-height: 300px;
+  }
+
+  .heroContentInner h1 {
+    font-size: var(--font-size-xxxxl);
+  }
+
+  .actionsRow {
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .appointmentCard {
+    max-width: 300px;
+    min-width: 300px;
+  }
+
+  .stackBottom .dedicatedCard {
+    padding-top: 20px;
+    min-height: 120px;
+  }
+
+  .socialProof {
+    justify-content: flex-start;
+  }
+
+  .bottomContent {
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

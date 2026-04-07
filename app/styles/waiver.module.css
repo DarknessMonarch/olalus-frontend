@@ -1,0 +1,111 @@
+@media screen {
+  .waiverSection {
+    gap: 40px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: var(--app-max-width);
+  }
+
+  .tabContainer {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-light);
+  }
+
+  .tabRow {
+    display: flex;
+    overflow-x: auto;
+    flex-direction: row;
+    scrollbar-width: none;
+    background: var(--background-color);
+  }
+
+  .tabRow::-webkit-scrollbar {
+    display: none;
+  }
+
+.tab {
+  flex: 1;
+  gap: 10px;
+  height: 150px;
+  width: 150px;
+  display: flex;
+  padding: 10px;
+  cursor: pointer;
+  min-width: 150px;
+  border-radius: 0;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--secondary-color);
+  font-size: var(--font-size-xxs);
+  line-height: var(--leading-snug);
+  background-color: var(--background-color);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-smooth);
+}
+
+  .tab:hover:not(.tabActive) {
+    background: var(--gold-tint);
+    color: var(--gold-text-dark);
+  }
+
+  .tab:hover:not(.tabActive) .tabIcon {
+    color: var(--gold-accent);
+  }
+
+.tabActive {
+  background: var(--gradient-primary);
+  color: var(--gold-text-on-gradient);
+}
+  .tabActive .tabIcon {
+    color: var(--gold-text-on-gradient);
+  }
+
+  .tabIcon {
+    flex-shrink: 0;
+    color: var(--gold-dark);
+    font-size: var(--font-size-xxl);
+    transition: color var(--transition-smooth);
+  }
+
+  .tab span {
+    text-align: center;
+    color: var(--gold-dark);
+    
+  }
+
+  .tabActive span {
+    color: var(--gold-text-on-gradient);
+
+  }
+
+
+  .descPanel {
+    padding: 20px;
+    display: flex;
+    min-height: 150px;
+    align-items: flex-start;
+    background: var(--gradient-primary);
+  }
+
+  .descPanel p {
+    line-height: 1.8;
+    font-size: var(--font-size-xs);
+    color: var(--gold-text-on-gradient);
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .waiverSection {
+    min-height: var(--section-min-height);
+    justify-content: center;
+  }
+
+}

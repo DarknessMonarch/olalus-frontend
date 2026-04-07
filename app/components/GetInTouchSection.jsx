@@ -1,0 +1,72 @@
+"use client";
+
+import styles from "@/app/styles/getInTouch.module.css";
+import SectionLabel from "@/app/components/ui/SectionLabel";
+import { IoCallSharp as PhoneIcon } from "react-icons/io5";
+import { MdLocationOn as LocationIcon, MdEmail as EmailIcon } from "react-icons/md";
+import { FiClock as ClockIcon } from "react-icons/fi";
+import { FaQuoteLeft as QuoteIcon } from "react-icons/fa";
+
+const CARDS = [
+  {
+    icon: PhoneIcon,
+    label: "Emergency",
+    lines: ["610-237-7199", "610-237-3488"],
+  },
+  {
+    icon: LocationIcon,
+    label: "Location",
+    lines: ["320 Macdade Blvd., Suite 103", "Collingdale, PA 19023"],
+  },
+  {
+    icon: EmailIcon,
+    label: "Email",
+    lines: ["olalusnursing@aol.com"],
+  },
+  {
+    icon: ClockIcon,
+    label: "Working Hours",
+    lines: ["Mon-Fri 8:30am - 4:30pm"],
+  },
+];
+
+export default function GetInTouchSection() {
+  return (
+    <section className={styles.section}>
+      <div className={styles.inner}>
+        <div className={styles.header}>
+          <SectionLabel text="Get In Touch" heading="Reach Out To Us" center={true} />
+        </div>
+
+        <div className={styles.cardsRow}>
+          {CARDS.map(({ icon: Icon, label, lines }) => (
+            <div key={label} className={styles.card}>
+              <div className={styles.iconWrap}>
+                <Icon className={styles.icon} />
+              </div>
+              <span className={styles.cardLabel}>{label}</span>
+              <div className={styles.cardLines}>
+                {lines.map((line, i) => (
+                  <span key={i}>{line}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={styles.quoteSection}>
+        <div className={styles.quoteOverlay} />
+        <div className={styles.quoteContent}>
+          <QuoteIcon className={styles.quoteIcon} />
+          <p className={styles.quoteText}>
+            Too often we underestimate the power of a touch, a smile, a kind word,
+            a listening ear, an honest compliment, or the smallest act of caring.
+          </p>
+          <div className={styles.quoteDivider} />
+          <span className={styles.quoteAuthor}>Leo Buscaglia</span>
+        </div>
+      </div>
+    </section>
+  );
+}
