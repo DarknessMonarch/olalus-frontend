@@ -1,13 +1,5 @@
 @media screen {
 
-  .glass {
-    backdrop-filter: blur(10px) saturate(1.1) brightness(1.05);
-    -webkit-backdrop-filter: blur(10px) saturate(1.1) brightness(1.05);
-    background: rgba(255, 248, 225, 0.55);
-    border: 1px solid rgba(209, 158, 29, 0.2);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 -10px 25px rgba(0, 0, 0, 0.08);
-  }
-
   .nav {
     width: 100%;
     display: flex;
@@ -225,8 +217,8 @@
     padding: 20px;
     gap: 10px;
     overflow-y: auto;
+    background: var(--background-color);
     border-radius: var(--radius-xxl) 0 0 var(--radius-xxl);
-    background: var(--gold-tint);
     border-left: 1px solid var(--light-color);
   }
 

@@ -1,31 +1,19 @@
 export function GET() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://olalusgroupllc.com";
+
   const robotsTxt = `User-agent: *
 Allow: /
 
-# Allow important pages
-Allow: /about
-Allow: /terms
-Allow: /contact
-Allow: /privacy
-Allow: /terms
-
-
-# Disallow admin and private areas
-Disallow: /admin
 Disallow: /api
 Disallow: /_next
-Disallow: /static
 Disallow: /dashboard
+Disallow: /admin
 
-# Sitemap location
-Sitemap: https://olalusgroupllc.com/sitemap.xml
+Sitemap: ${siteUrl}/sitemap.xml
 
-# Crawl delay
 Crawl-delay: 1`;
 
   return new Response(robotsTxt, {
-    headers: {
-      'Content-Type': 'text/plain',
-    },
+    headers: { "Content-Type": "text/plain" },
   });
 }

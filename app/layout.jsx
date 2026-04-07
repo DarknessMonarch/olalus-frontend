@@ -21,33 +21,46 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-const SITE_URL = "https://olalusgroupllc.com";
-const BANNER_URL =
-  "https://raw.githubusercontent.com/DarknessMonarch/olalus/refs/heads/master/public/assets/banner.png";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://olalusgroupllc.com";
+const SITE_NAME = "Olalus Community Health Care Services";
+const DESCRIPTION =
+  "Olalus Community Health Care Services provides client-centered, in-home care in Pennsylvania. Services include personal care, nursing, respite care, dementia care, and community support — delivered by certified professionals.";
+const BANNER_URL = `${SITE_URL}/assets/banner.png`;
+const KEYWORDS = [
+  "home care Pennsylvania",
+  "in-home care services",
+  "Olalus Community Health Care",
+  "personal care assistance",
+  "dementia care Pennsylvania",
+  "respite care",
+  "nursing home care",
+  "community health care",
+  "senior care Collingdale PA",
+  "home health aide",
+  "Olalus",
+  "olalusgroup",
+];
 
 export const viewport = {
-   themeColor: "#d19e1d",
+  themeColor: "#d19e1d",
 };
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
 
   title: {
-    default: "Olalusgroupllc - ",
-    template: "%s | Olalusgroupllc",
+    default: `${SITE_NAME} | Trusted Home Care in Pennsylvania`,
+    template: `%s | ${SITE_NAME}`,
   },
-  applicationName: "Olalusgroupllc",
-  description:
-    "",
-  authors: [{ name: "Olalusgroupllc", url: SITE_URL }],
+  applicationName: "Olalus Group",
+  description: DESCRIPTION,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
   generator: "Next.js",
-  keywords: [
-    "Olalusgroupllc",
-  ],
+  keywords: KEYWORDS,
 
   referrer: "origin-when-cross-origin",
-  creator: "swiftsyn",
-  publisher: "Olalusgroupllc",
+  creator: "Olalus Group LLC",
+  publisher: SITE_NAME,
 
   formatDetection: {
     email: false,
@@ -59,33 +72,31 @@ export const metadata = {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    siteName: "Olalusgroupllc",
-    title: "Olalusgroupllc",
-    description:
-      "",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | Trusted Home Care in Pennsylvania`,
+    description: DESCRIPTION,
     images: [
       {
         url: BANNER_URL,
         width: 1200,
         height: 630,
-        alt: "Olalusgroupllc",
+        alt: `${SITE_NAME} — Trusted Home Care`,
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Olalusgroupllc",
-    description:
-      "",
+    title: `${SITE_NAME} | Trusted Home Care in Pennsylvania`,
+    description: DESCRIPTION,
     images: [BANNER_URL],
-    creator: "@Olalusgroupllc",
+    creator: "@olalusgroupllc",
   },
 
   robots: {
     index: true,
     follow: true,
-    nocache: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -102,7 +113,7 @@ export const metadata = {
   },
 
   alternates: {
-    canonical: `${SITE_URL}`,
+    canonical: SITE_URL,
   },
 
   icons: {
@@ -114,51 +125,95 @@ export const metadata = {
 
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Olalusgroupllc",
+  "@type": "MedicalBusiness",
+  "@id": `${SITE_URL}/#organization`,
+  name: SITE_NAME,
+  alternateName: "Olalus Group LLC",
   url: SITE_URL,
-  logo: `${SITE_URL}/assets/logo.png`,
-  description:
-    "Olalusgroupllc -",
-  sameAs: [
-    "https://www.facebook.com/Olalusgroupllc",
-    "https://instagram.com/Olalusgroupllc",
-    "https://www.tiktok.com/@Olalusgroupllc",
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/assets/logo.png`,
+  },
+  image: BANNER_URL,
+  description: DESCRIPTION,
+  foundingDate: "2015",
+  numberOfEmployees: { "@type": "QuantitativeValue", value: 300 },
+  areaServed: {
+    "@type": "State",
+    name: "Pennsylvania",
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "320 Macdade Blvd., Suite 103",
+    addressLocality: "Collingdale",
+    addressRegion: "PA",
+    postalCode: "19023",
+    addressCountry: "US",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+1-610-237-7199",
+      contactType: "customer service",
+      availableLanguage: "English",
+      areaServed: "US",
+    },
   ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    email: "Olalusgroupllc@gmail.com",
-    contactType: "Customer Support",
-    url: SITE_URL,
-    telephone: "",
-    areaServed: "Worldwide",
-    availableLanguage: "English",
+  email: "olalusnursing@aol.com",
+  telephone: "+1-610-237-7199",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "08:30",
+    closes: "16:30",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "2251",
-  },
+  sameAs: [
+    "https://www.facebook.com/olalusgroupllc",
+    "https://twitter.com/olalusgroupllc",
+    "https://www.linkedin.com/company/olalusgroupllc",
+    "https://www.youtube.com/@olalusgroupllc",
+  ],
   hasOfferCatalog: {
-    "@type": "",
-    name: "",
+    "@type": "OfferCatalog",
+    name: "Home Care Services",
     itemListElement: [
-      {
-        "@type": "",
-        name: "",
-        itemListElement: [
-          {
-            "@type": "",
-            itemOffered: {
-              "@type": "",
-              name: "",
-            },
-          },
-        ],
-      },
-  
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Personal Care Assistance" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Dementia & Alzheimer's Care" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Nursing Care" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Respite Care" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Home & Community Support" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Medication Management" } },
     ],
   },
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${SITE_URL}/#localbusiness`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  telephone: "+1-610-237-7199",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "320 Macdade Blvd., Suite 103",
+    addressLocality: "Collingdale",
+    addressRegion: "PA",
+    postalCode: "19023",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 39.9112,
+    longitude: -75.2768,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "08:30",
+    closes: "16:30",
+  },
+  image: BANNER_URL,
 };
 
 export default function RootLayout({ children }) {
@@ -167,23 +222,14 @@ export default function RootLayout({ children }) {
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
       </head>
-      <body
-        className={`${inter.variable} ${poppins.variable} ${inter.className}`}
-      >
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-
+      <body className={`${inter.variable} ${poppins.variable} ${inter.className}`}>
         <Script
           id="google-translate-init"
           strategy="afterInteractive"
@@ -195,7 +241,7 @@ export default function RootLayout({ children }) {
               document.body.appendChild(gtEl);
               window.googleTranslateElementInit = function() {
                 new window.google.translate.TranslateElement(
-                  { pageLanguage: 'en', includedLanguages: 'en,es,fr,ar,zh-CN,zh-TW,pt,ru,de,it,ja,ko,vi,tl,hi,pl,nl,tr,sw,uk', autoDisplay: false },
+                  { pageLanguage: 'en', includedLanguages: 'en,es,fr,ar,zh-CN,zh-TW,pt,ru,de,it,ja,ko,vi,tl,hi,pl,nl,tr,sw,uk', autoDisplay: false, layout: google.translate.TranslateElement.InlineLayout.SIMPLE },
                   'google_translate_element'
                 );
               };
@@ -207,37 +253,10 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        <Script
-          id="ga-tag"
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-', {
-                page_path: window.location.pathname,
-                custom_map: {
-                  'custom_parameter_1': 'conversation_category'
-                }
-              });
-              
-              gtag('config', 'G-', {
-                'custom_map.category': 'templates'
-              });
-            `,
-          }}
-        />
-
         <Toaster
           position="top-center"
           richColors={true}
-         toastOptions={{
+          toastOptions={{
             style: {
               background: "#d19e1d",
               border: "1px solid #d19e1d",

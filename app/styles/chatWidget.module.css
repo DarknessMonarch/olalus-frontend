@@ -173,6 +173,10 @@
     border-bottom-right-radius: 4px;
   }
 
+  .userBubble p {
+    color: var(--background-color);
+  }
+
   .botBubble {
     align-self: flex-start;
     background: var(--light-color);

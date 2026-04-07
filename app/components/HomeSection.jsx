@@ -7,7 +7,7 @@ import { useTestimonialsStore } from "@/app/store/Testimonials";
 import { useBannersStore } from "@/app/store/Banners";
 import { useAboutStore } from "@/app/store/About";
 import styles from "@/app/styles/home.module.css";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { MdVerified as VerifiedIcon } from "react-icons/md";
 import PartnersSection from "@/app/components/PartnersSection";
 import { FiPhone as PhoneIcon, FiArrowRight as ArrowRight } from "react-icons/fi";
@@ -44,8 +44,6 @@ export default function Home() {
   const { testimonials, fetchTestimonials } = useTestimonialsStore();
   const { banners, fetchBanners } = useBannersStore();
   const { about, fetchAbout } = useAboutStore();
-  const router = useRouter();
-
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [activeFeature, setActiveFeature] = useState(0);
 
@@ -88,7 +86,6 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [features.length]);
 
-  const goToService = () => router.push("/services");
   const goToAppointment = () => document.getElementById("appointment")?.scrollIntoView({ behavior: "smooth" });
 
   return (
@@ -138,9 +135,9 @@ export default function Home() {
                 </LiquidGlass>
               </div>
               <div className={styles.actionsRow}>
-                <button onClick={goToService} className={styles.exploreBtn}>
+                <Link href="/services" className={styles.exploreBtn}>
                   Explore Services <ArrowRight className={styles.arrowIcon} />
-                </button>
+                </Link>
                 <div className={styles.contactArea}>
                   <LiquidGlass borderRadius={32} blur={0.5}>
                     <div className={styles.phoneBtn}>
