@@ -142,11 +142,7 @@ export default function Home() {
                       <span className={styles.phoneIconWrap}>
                         <PhoneIcon />
                       </span>
-                      {aboutLoaded && about?.phone ? (
-                        <span>{about.phone}</span>
-                      ) : aboutLoaded ? null : (
-                        <div className={`${styles.skeletonLine} ${styles.skeletonPhone}`} />
-                      )}
+                      <span>+1 (610) 237-7199</span>
                     </div>
                   </LiquidGlass>
                 </div>
