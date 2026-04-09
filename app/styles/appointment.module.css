@@ -31,7 +31,7 @@
 
   .tab {
     flex: 1;
-    padding: 14px 20px;
+    padding: 15px 20px;
     font-size: var(--font-size-xxs);
     font-weight: var(--font-weight-semibold);
     letter-spacing: 1.5px;
@@ -45,7 +45,7 @@
   }
 
   .tabActive {
-    background: var(--background-color);
+    background: var(--gradient-primary  );
     color: var(--primary-color);
   }
 
