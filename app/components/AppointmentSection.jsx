@@ -16,22 +16,23 @@ const TABS = ["Consultation", "Appointment"];
 const EMPTY_CONSULTATION = { firstName: "", lastName: "", email: "", phone: "", message: "" };
 const EMPTY_APPOINTMENT = { firstName: "", lastName: "", email: "", phone: "", serviceType: "", dateTime: "", message: "" };
 
-const FALLBACK_TESTIMONIALS = [
-  {
-    _id: "f1",
-    name: "Lauren Willis",
-    content: "Olalus has been an absolute blessing for our family. The caregivers are professional, compassionate, and truly dedicated to my mother's wellbeing.",
-    rating: 5,
-    position: "Family Member",
-  },
-  {
-    _id: "f2",
-    name: "James Carter",
-    content: "Outstanding service from start to finish. The team went above and beyond to ensure my father received the best possible care.",
-    rating: 5,
-    position: "Client's Son",
-  },
-];
+function TestimonialSkeleton() {
+  return (
+    <div className={styles.miniCard}>
+      <div className={styles.skeletonText} />
+      <div className={styles.skeletonTextShort} />
+      <div className={styles.skeletonTextShorter} />
+      <div className={styles.miniReviewer}>
+        <div className={styles.skeletonCircle} />
+        <div className={styles.skeletonReviewerInfo}>
+          <div className={styles.skeletonName} />
+          <div className={styles.skeletonPosition} />
+        </div>
+        <div className={styles.skeletonStars} />
+      </div>
+    </div>
+  );
+}
 
 export default function AppointmentSection() {
   const { submit, loading } = useAppointmentsStore();
@@ -73,7 +74,9 @@ export default function AppointmentSection() {
   };
 
   const all = [...approvedComments, ...testimonials];
-  const displayTestimonials = all.length >= 2 ? all.slice(0, 2) : FALLBACK_TESTIMONIALS;
+  // Only loaded once both stores have responded (either has data or is empty array — not undefined)
+  const testimonialsLoaded = Array.isArray(testimonials) && Array.isArray(approvedComments);
+  const displayTestimonials = all.slice(0, 2);
 
   return (
     <section id="appointment" className={styles.appointmentSection}>
@@ -134,25 +137,37 @@ export default function AppointmentSection() {
           </div>
 
           <div className={styles.testimonialList}>
-            {displayTestimonials.map((t) => (
-              <div key={t._id} className={styles.miniCard}>
-                <p className={styles.miniQuote}>&ldquo;{t.content}&rdquo;</p>
-                <div className={styles.miniReviewer}>
-                  <div className={styles.miniInitial}>
-                    {t.name?.charAt(0).toUpperCase()}
-                  </div>
-                  <div className={styles.miniInfo}>
-                    <strong>{t.name}</strong>
-                    {t.position && <span>{t.position}</span>}
-                  </div>
-                  <div className={styles.miniStars}>
-                    {[...Array(t.rating || 5)].map((_, j) => (
-                      <StarIcon key={j} className={styles.miniStar} />
-                    ))}
+            {!testimonialsLoaded ? (
+              <>
+                <TestimonialSkeleton />
+                <TestimonialSkeleton />
+              </>
+            ) : displayTestimonials.length > 0 ? (
+              displayTestimonials.map((t) => (
+                <div key={t._id} className={styles.miniCard}>
+                  <p className={styles.miniQuote}>&ldquo;{t.content}&rdquo;</p>
+                  <div className={styles.miniReviewer}>
+                    <div className={styles.miniInitial}>
+                      {t.name?.charAt(0).toUpperCase()}
+                    </div>
+                    <div className={styles.miniInfo}>
+                      <strong>{t.name}</strong>
+                      {t.position && <span>{t.position}</span>}
+                    </div>
+                    <div className={styles.miniStars}>
+                      {[...Array(t.rating || 5)].map((_, j) => (
+                        <StarIcon key={j} className={styles.miniStar} />
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <>
+                <TestimonialSkeleton />
+                <TestimonialSkeleton />
+              </>
+            )}
           </div>
 
           <div className={styles.statsRow}>

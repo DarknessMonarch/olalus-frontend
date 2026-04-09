@@ -459,11 +459,10 @@
       rgba(255, 255, 255, 0.12) 75%
     );
     background-size: 200% 100%;
-    animation: shimmer 1.5s infinite linear; /* reuses global @keyframes shimmer */
+    animation: shimmer 1.5s infinite linear; 
     flex-shrink: 0;
   }
  
-  /* ── Hero title lines ── */
   .skeletonTitle {
     height: 32px;
     width: 85%;
@@ -477,7 +476,6 @@
     animation-delay: 0.1s;
   }
  
-  /* ── Body text lines ── */
   .skeletonText {
     height: 14px;
     width: 100%;
@@ -492,21 +490,18 @@
     animation-delay: 0.2s;
   }
  
-  /* ── Phone number placeholder ── */
   .skeletonPhone {
     height: 14px;
     width: 130px;
     border-radius: 4px;
   }
  
-  /* ── Avatar circle in book-appointment row ── */
   .skeletonAvatar {
     width: 40px;
     height: 40px;
     border-radius: var(--radius-circle);
   }
  
-  /* ── Small avatar circles in social-proof stack ── */
   .skeletonAvatarSm {
     width: 36px;
     height: 36px;
@@ -515,7 +510,6 @@
     margin-right: -10px;
   }
  
-  /* ── Social-proof text lines ── */
   .skeletonProofCount {
     height: 13px;
     width: 130px;
@@ -529,7 +523,6 @@
     animation-delay: 0.1s;
   }
  
-  /* ── Feature dots placeholder ── */
   .skeletonDot {
     height: 4px;
     width: 8px;
@@ -537,7 +530,6 @@
     opacity: 0.4;
   }
  
-  /* ── Banner nav dots placeholder ── */
   .skeletonDotWide {
     height: 4px;
     width: 80px;
@@ -601,7 +593,7 @@
 
   .heroContentInner h1 {
     font-size: var(--font-size-xxxxl);
-  }
+  } 
 
   .actionsRow {
     gap: 10px;
