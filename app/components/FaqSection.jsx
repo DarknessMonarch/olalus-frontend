@@ -1,13 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import styles from "@/app/styles/faq.module.css";
 import { useFaqsStore } from "@/app/store/Faqs";
 import SectionLabel from "@/app/components/ui/SectionLabel";
 
-
 function AccordionItem({ faq, index, isOpen, onToggle }) {
-  const bodyRef = useRef(null);
   const lines = faq.answer?.split("\n").filter(Boolean) ?? [];
   const isList = lines.length > 1;
 
@@ -24,11 +22,8 @@ function AccordionItem({ faq, index, isOpen, onToggle }) {
         </span>
       </button>
 
-      <div
-        className={styles.faqAnswerWrap}
-        style={{ maxHeight: isOpen ? bodyRef.current?.scrollHeight + "px" : "0px" }}
-      >
-        <div ref={bodyRef} className={styles.faqAnswer}>
+      <div className={`${styles.faqAnswerWrap} ${isOpen ? styles.faqAnswerOpen : ""}`}>
+        <div className={styles.faqAnswer}>
           {isList ? (
             <ul className={styles.bulletList}>
               {lines.map((line, i) => (
@@ -44,31 +39,33 @@ function AccordionItem({ faq, index, isOpen, onToggle }) {
   );
 }
 
+function FaqSkeleton() {
+  return (
+    <section className={styles.faqSection}>
+      <div className={styles.header}>
+        <div className={`${styles.skeletonLabel} skeleton`} />
+        <div className={`${styles.skeletonHeading} skeleton`} />
+      </div>
+      <div className={styles.faqList}>
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className={styles.skeletonItem}>
+            <div className={`${styles.skeletonQ} skeleton`} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function FaqSection() {
   const { faqs, loading, fetchFaqs } = useFaqsStore();
   const [openIndex, setOpenIndex] = useState(null);
 
-  useEffect(() => { fetchFaqs(); }, []);
+  useEffect(() => { fetchFaqs(); }, [fetchFaqs]);
 
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
 
-  if (faqs.length === 0) {
-    return (
-      <section className={styles.faqSection}>
-        <div className={styles.header}>
-          <div className={`${styles.skeletonLabel} skeleton`} />
-          <div className={`${styles.skeletonHeading} skeleton`} />
-        </div>
-        <div className={styles.faqList}>
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className={styles.skeletonItem}>
-              <div className={`${styles.skeletonQ} skeleton`} />
-            </div>
-          ))}
-        </div>
-      </section>
-    );
-  }
+  if (loading || faqs.length === 0) return <FaqSkeleton />;
 
   return (
     <section className={styles.faqSection}>

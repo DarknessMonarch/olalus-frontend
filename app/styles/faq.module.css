@@ -53,7 +53,6 @@
     text-align: start;
   }
 
-
   .toggleIcon {
     width: 28px;
     height: 28px;
@@ -76,13 +75,26 @@
     color: var(--primary-color);
   }
 
+  /* Collapsed: grid rows collapsed to 0, no need for scrollHeight */
   .faqAnswerWrap {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.35s ease;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
   }
 
+  /* Open: grid rows expand to natural height */
+  .faqAnswerOpen {
+    grid-template-rows: 1fr;
+  }
+
+  /* Inner div must have overflow hidden for grid trick to work */
   .faqAnswer {
+    overflow: hidden;
+    padding-bottom: 0;
+    transition: padding-bottom 0.35s ease;
+  }
+
+  .faqAnswerOpen .faqAnswer {
     padding-bottom: 20px;
   }
 
@@ -150,8 +162,6 @@
     padding: var(--padding-xxxl) 60px;
     min-height: var(--section-min-height);
   }
-
-
 }
 
 @media only screen and (min-width: 64.063em) {
