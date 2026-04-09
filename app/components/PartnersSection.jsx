@@ -5,15 +5,26 @@ import { useEffect } from "react";
 import styles from "@/app/styles/partners.module.css";
 import { usePartnersStore } from "@/app/store/Partners";
 
-const FALLBACK = ["Partner", "Partner", "Partner", "Partner", "Partner", "Partner"];
-
 export default function PartnersSection() {
   const { partners, fetchPartners } = usePartnersStore();
 
-  useEffect(() => { fetchPartners(); }, []);
+  useEffect(() => { fetchPartners(); }, [fetchPartners]);
 
-  const items = partners.length > 0 ? partners : FALLBACK.map((name) => ({ name }));
-  const loopItems = [...items, ...items, ...items];
+  if (!partners) {
+    return (
+      <section className={styles.partnersSection}>
+        <div className={styles.skeletonTrack}>
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className={`${styles.skeletonPill} skeleton`} />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (partners.length === 0) return null;
+
+  const loopItems = [...partners, ...partners, ...partners];
 
   return (
     <section className={styles.partnersSection}>
