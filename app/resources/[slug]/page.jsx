@@ -13,7 +13,7 @@ const TYPE_LABELS = {
 
 async function fetchResource(slug) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/resource/slug/${slug}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_API}/resources/slug/${slug}`, {
       next: { revalidate: 3600 },
     });
     if (!res.ok) return null;
