@@ -266,7 +266,6 @@ export default function Home() {
             ) : null}
           </div>
 
-          {/* Bottom — banner dots + social icons */}
           <div className={styles.bottomContent}>
             <div className={styles.bannerDots}>
               {bannersLoaded ? (

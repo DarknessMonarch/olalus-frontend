@@ -36,14 +36,13 @@
   .partnerLogo {
     position: relative;
     width: 100px;
-    height: 44px;
+    height: 70px;
     flex-shrink: 0;
-    opacity: 0.75;
   }
 
   .separator {
     font-size: var(--font-size-xxl);
-    color: var(--gold-mid);
+    color: var(--gold-dark);
     opacity: 0.6;
     font-weight: var(--font-weight-light);
   }
