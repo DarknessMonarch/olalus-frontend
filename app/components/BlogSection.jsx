@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import styles from "@/app/styles/blog.module.css";
 import { useBlogsStore } from "@/app/store/Blogs";
@@ -14,24 +14,18 @@ import EmptyState from "@/app/components/ui/EmptyState";
 export default function BlogSection() {
   const { blogs, categories, loading, fetchBlogs, fetchCategories } = useBlogsStore();
   const [search, setSearch] = useState("");
-  const [filtered, setFiltered] = useState([]);
 
   useEffect(() => {
     fetchBlogs();
     fetchCategories();
-  }, []);
+  }, [fetchBlogs, fetchCategories]);
 
-  useEffect(() => {
-    if (!search.trim()) {
-      setFiltered(blogs);
-      return;
-    }
-    setFiltered(
-      blogs.filter(
-        (b) =>
-          b.title?.toLowerCase().includes(search.toLowerCase()) ||
-          b.content?.toLowerCase().includes(search.toLowerCase())
-      )
+  const filtered = useMemo(() => {
+    if (!search.trim()) return blogs;
+    return blogs.filter(
+      (b) =>
+        b.title?.toLowerCase().includes(search.toLowerCase()) ||
+        b.content?.toLowerCase().includes(search.toLowerCase())
     );
   }, [search, blogs]);
 
@@ -61,6 +55,7 @@ export default function BlogSection() {
       </section>
     );
   }
+
   const displayCategories = categories.length > 0 ? categories : [];
 
   const stripHtml = (html = "") => html.replace(/<[^>]*>/g, "");
