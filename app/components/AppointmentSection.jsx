@@ -46,7 +46,7 @@ export default function AppointmentSection() {
     fetchServices();
     fetchTestimonials();
     fetchApprovedComments();
-  }, []);
+  }, [fetchApprovedComments, fetchServices, fetchTestimonials]);
 
   const handleTabChange = (i) => {
     setActiveTab(i);

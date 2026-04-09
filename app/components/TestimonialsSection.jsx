@@ -45,7 +45,7 @@ export default function TestimonialsSection() {
   useEffect(() => {
     fetchTestimonials();
     fetchApprovedComments();
-  }, []);
+  }, [fetchApprovedComments, fetchTestimonials]);
 
   const all = [...approvedComments, ...testimonials];
   const row1 = [...all, ...all, ...all];

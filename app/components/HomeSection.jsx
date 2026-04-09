@@ -29,7 +29,7 @@ export default function Home() {
     fetchTestimonials();
     fetchBanners();
     fetchAbout();
-  }, []);
+  }, [fetchAbout, fetchApprovedComments, fetchBanners, fetchCommentStats, fetchTestimonials]);
 
   const currentBanner = banners.length ? banners[currentBannerIndex] || banners[0] : null;
 
@@ -67,7 +67,6 @@ export default function Home() {
   return (
     <section className={styles.homeSectionWrapper}>
       <div className={`${styles.homeSection} skeleton`}>
-        {/* Hero image — has its own loader built in */}
         {currentBanner?.image && (
           <div className={styles.heroImageWrapper}>
             <Image
