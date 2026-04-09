@@ -15,30 +15,6 @@ import { RiTwitterXLine as XIcon } from "react-icons/ri";
 import { FaLinkedinIn as LinkedInIcon, FaFacebookF as FacebookIcon, FaYoutube as YoutubeIcon, FaStar as StarIcon } from "react-icons/fa";
 import { LiquidGlass } from "@liquidglass/react";
 
-const FALLBACK_BANNERS = [
-  {
-    _id: "1",
-    title: "Trusted Provider of your Home Care Needs.",
-    description: "Olalus provides client-centered care that supports individuals to live safely and independently at home and in their communities. Their services include residential care, in-home and community support, nursing, respite care for families, household assistance, and community participation, all tailored to each client's needs and delivered by trained professionals to improve quality of life.",
-    image: "https://images.pexels.com/photos/7446987/pexels-photo-7446987.jpeg",
-  },
-  {
-    _id: "2",
-    title: "Compassionate Care, Every Step of the Way.",
-    description: "Our trained professionals deliver personalised in-home care, giving families peace of mind while helping clients live with dignity and independence.",
-    image: "https://images.pexels.com/photos/5327654/pexels-photo-5327654.jpeg",
-  },
-];
-
-const FALLBACK_INITIALS = ["J", "M", "S", "R"];
-
-const FALLBACK_FEATURES = [
-  "Each client gets a dedicated assistant",
-  "24/7 support for you and your loved ones",
-  "Personalised care plans tailored to your needs",
-  "Certified professionals you can trust",
-];
-
 export default function Home() {
   const { commentStats, approvedComments, fetchCommentStats, fetchApprovedComments } = useCommentsStore();
   const { testimonials, fetchTestimonials } = useTestimonialsStore();
@@ -55,35 +31,35 @@ export default function Home() {
     fetchAbout();
   }, []);
 
-  const bannerList = banners.length ? banners : FALLBACK_BANNERS;
-  const currentBanner = bannerList[currentBannerIndex] || bannerList[0];
+  const currentBanner = banners.length ? banners[currentBannerIndex] || banners[0] : null;
 
   const appointmentAvatar = about?.appointmentAvatar || null;
-  const features = about?.appointmentFeatures?.length ? about.appointmentFeatures : FALLBACK_FEATURES;
+  const features = about?.appointmentFeatures?.length ? about.appointmentFeatures : [];
 
   const all = [...approvedComments, ...testimonials];
-  const reviewerInitials = all.length > 0
-    ? all.slice(0, 4).map((r) => r.name?.charAt(0).toUpperCase() || "?")
-    : FALLBACK_INITIALS;
+  const reviewerInitials = all.slice(0, 4).map((r) => r.name?.charAt(0).toUpperCase() || "?");
 
-  const rating = commentStats?.count > 0 ? commentStats.averageRating : 5.0;
-  const filledStars = Math.round(rating);
+  const rating = commentStats?.count > 0 ? commentStats.averageRating : null;
+  const filledStars = rating ? Math.round(rating) : 0;
   const reviewCount = commentStats?.count > 0 ? commentStats.count : null;
 
+  const bannersLoaded = banners.length > 0;
+  const aboutLoaded = about !== null && about !== undefined;
+  const statsLoaded = commentStats !== null && commentStats !== undefined;
+
   useEffect(() => {
-    if (bannerList.length <= 1) return;
+    if (banners.length <= 1) return;
     const interval = setInterval(() => {
-      setCurrentBannerIndex((prev) => (prev + 1) % bannerList.length);
+      setCurrentBannerIndex((prev) => (prev + 1) % banners.length);
     }, 10000);
     return () => clearInterval(interval);
-  }, [bannerList.length]);
+  }, [banners.length]);
 
   useEffect(() => {
     if (features.length <= 1) return;
     const interval = setInterval(() => {
       setActiveFeature((prev) => (prev + 1) % features.length);
     }, 4000);
-    return () => clearInterval(interval);
   }, [features.length]);
 
   const goToAppointment = () => document.getElementById("appointment")?.scrollIntoView({ behavior: "smooth" });
@@ -91,20 +67,24 @@ export default function Home() {
   return (
     <section className={styles.homeSectionWrapper}>
       <div className={`${styles.homeSection} skeleton`}>
-        <div className={styles.heroImageWrapper}>
-          <Image
-            className={styles.heroImage}
-            src={currentBanner.image}
-            alt={currentBanner.title}
-            fill
-            sizes="100%"
-            quality={100}
-            style={{ objectFit: "cover" }}
-            priority={true}
-          />
-        </div>
+        {/* Hero image — has its own loader built in */}
+        {currentBanner?.image && (
+          <div className={styles.heroImageWrapper}>
+            <Image
+              className={styles.heroImage}
+              src={currentBanner.image}
+              alt={currentBanner.title || ""}
+              fill
+              sizes="100%"
+              quality={100}
+              style={{ objectFit: "cover" }}
+              priority={true}
+            />
+          </div>
+        )}
 
         <div className={styles.overlay}>
+          {/* Top — 24/7 support circle */}
           <div className={styles.topContent}>
             <div className={styles.supportCircle}>
               <LiquidGlass borderRadius={99999} blur={0.5}>
@@ -116,8 +96,10 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Middle content */}
           <div className={styles.middleContent}>
             <div className={styles.middleContentTop}>
+              {/* Quality assurance badge */}
               <div className={styles.qualityAssurance}>
                 <LiquidGlass borderRadius={999} blur={0.5}>
                   <div className={styles.qualityAssuranceContent}>
@@ -126,14 +108,30 @@ export default function Home() {
                   </div>
                 </LiquidGlass>
               </div>
+
+              {/* Hero title + description */}
               <div className={styles.heroContent}>
                 <LiquidGlass borderRadius={24} blur={0.5}>
                   <div className={styles.heroContentInner}>
-                    <h1>{currentBanner.title}</h1>
-                    <p>{currentBanner.description}</p>
+                    {bannersLoaded ? (
+                      <>
+                        <h1>{currentBanner?.title}</h1>
+                        <p>{currentBanner?.description}</p>
+                      </>
+                    ) : (
+                      <>
+                        <div className={`${styles.skeletonLine} ${styles.skeletonTitle}`} />
+                        <div className={`${styles.skeletonLine} ${styles.skeletonTitleShort}`} />
+                        <div className={`${styles.skeletonLine} ${styles.skeletonText}`} />
+                        <div className={`${styles.skeletonLine} ${styles.skeletonText}`} />
+                        <div className={`${styles.skeletonLine} ${styles.skeletonTextShort}`} />
+                      </>
+                    )}
                   </div>
                 </LiquidGlass>
               </div>
+
+              {/* Action buttons */}
               <div className={styles.actionsRow}>
                 <Link href="/services" className={styles.exploreBtn}>
                   Explore Services <ArrowRight className={styles.arrowIcon} />
@@ -144,21 +142,33 @@ export default function Home() {
                       <span className={styles.phoneIconWrap}>
                         <PhoneIcon />
                       </span>
-                      <span>+1 (610) 237-7199</span>
+                      {aboutLoaded && about?.phone ? (
+                        <span>{about.phone}</span>
+                      ) : aboutLoaded ? null : (
+                        <div className={`${styles.skeletonLine} ${styles.skeletonPhone}`} />
+                      )}
                     </div>
                   </LiquidGlass>
                 </div>
               </div>
             </div>
+
+            {/* Appointment card */}
             <div className={styles.appointmentCard}>
               <div className={styles.stackTop}>
                 <LiquidGlass borderRadius={24} blur={0.5}>
-                  <div className={styles.bookAppointment} onClick={goToAppointment} style={{ cursor: "pointer" }}>
+                  <div
+                    className={styles.bookAppointment}
+                    onClick={goToAppointment}
+                    style={{ cursor: "pointer" }}
+                  >
                     <div className={styles.bookAvatarWrap}>
                       {appointmentAvatar ? (
                         <Image src={appointmentAvatar} alt="assistant" height={40} width={40} />
-                      ) : (
+                      ) : aboutLoaded ? (
                         <div className={styles.bookAvatarInitial}>O</div>
+                      ) : (
+                        <div className={`${styles.skeletonCircle} ${styles.skeletonAvatar}`} />
                       )}
                     </div>
                     <span>Book Appointment</span>
@@ -172,20 +182,36 @@ export default function Home() {
               <div className={styles.stackBottom}>
                 <LiquidGlass borderRadius={24} blur={0.5}>
                   <div className={styles.dedicatedCard}>
-                    <p className={styles.dedicatedText}>
-                      {features[activeFeature]}
-                    </p>
-                    <div className={styles.dedicatedDots}>
-                      {features.map((_, i) => (
-                        <button
-                          key={i}
-                          type="button"
-                          onClick={() => setActiveFeature(i)}
-                          className={i === activeFeature ? styles.dedicatedDotActive : styles.dedicatedDot}
-                          aria-label={`Feature ${i + 1}`}
-                        />
-                      ))}
-                    </div>
+                    {features.length > 0 ? (
+                      <>
+                        <p className={styles.dedicatedText}>{features[activeFeature]}</p>
+                        <div className={styles.dedicatedDots}>
+                          {features.map((_, i) => (
+                            <button
+                              key={i}
+                              type="button"
+                              onClick={() => setActiveFeature(i)}
+                              className={
+                                i === activeFeature
+                                  ? styles.dedicatedDotActive
+                                  : styles.dedicatedDot
+                              }
+                              aria-label={`Feature ${i + 1}`}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className={`${styles.skeletonLine} ${styles.skeletonText}`} />
+                        <div className={`${styles.skeletonLine} ${styles.skeletonTextShort}`} />
+                        <div className={styles.dedicatedDots}>
+                          {[0, 1, 2].map((i) => (
+                            <div key={i} className={styles.skeletonDot} />
+                          ))}
+                        </div>
+                      </>
+                    )}
                   </div>
                 </LiquidGlass>
                 <div className={styles.backCardContainer}>
@@ -200,40 +226,66 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Social proof / reviews */}
           <div className={styles.socialProof}>
-            <div className={styles.avatarStack}>
-              {reviewerInitials.slice(0, 4).map((letter, i) => (
-                <div key={i} className={styles.avatarItem}>
-                  <span>{letter}</span>
+            {statsLoaded && all.length > 0 ? (
+              <>
+                <div className={styles.avatarStack}>
+                  {reviewerInitials.map((letter, i) => (
+                    <div key={i} className={styles.avatarItem}>
+                      <span>{letter}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <div className={styles.proofText}>
-              <span className={styles.proofCount}>
-                {reviewCount ? `${reviewCount}+ Verified Reviews` : "Trusted Community Care"}
-              </span>
-              <div className={styles.stars}>
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    className={styles.starIcon}
-                    style={i >= filledStars ? { opacity: 0.35 } : {}}
-                  />
-                ))}
-                <span>{rating.toFixed(1)} rating</span>
-              </div>
-            </div>
+                <div className={styles.proofText}>
+                  <span className={styles.proofCount}>
+                    {reviewCount ? `${reviewCount}+ Verified Reviews` : "Trusted Community Care"}
+                  </span>
+                  {rating !== null && (
+                    <div className={styles.stars}>
+                      {[...Array(5)].map((_, i) => (
+                        <StarIcon
+                          key={i}
+                          className={styles.starIcon}
+                          style={i >= filledStars ? { opacity: 0.35 } : {}}
+                        />
+                      ))}
+                      <span>{rating.toFixed(1)} rating</span>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : !statsLoaded ? (
+              <>
+                <div className={styles.avatarStack}>
+                  {[0, 1, 2, 3].map((i) => (
+                    <div key={i} className={`${styles.skeletonCircle} ${styles.skeletonAvatarSm}`} />
+                  ))}
+                </div>
+                <div className={styles.proofText}>
+                  <div className={`${styles.skeletonLine} ${styles.skeletonProofCount}`} />
+                  <div className={`${styles.skeletonLine} ${styles.skeletonStars}`} />
+                </div>
+              </>
+            ) : null}
           </div>
 
+          {/* Bottom — banner dots + social icons */}
           <div className={styles.bottomContent}>
             <div className={styles.bannerDots}>
-              {bannerList.map((_, i) => (
-                <button
-                  key={i}
-                  className={`${styles.dot} ${i === currentBannerIndex ? styles.dotActive : ""}`}
-                  onClick={() => setCurrentBannerIndex(i)}
-                />
-              ))}
+              {bannersLoaded ? (
+                banners.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`${styles.dot} ${i === currentBannerIndex ? styles.dotActive : ""}`}
+                    onClick={() => setCurrentBannerIndex(i)}
+                  />
+                ))
+              ) : (
+                [0, 1].map((i) => (
+                  <div key={i} className={`${styles.dot} ${styles.skeletonDotWide}`} />
+                ))
+              )}
             </div>
             <div className={styles.socialIcons}>
               <div className={styles.socialIcon}><XIcon /></div>

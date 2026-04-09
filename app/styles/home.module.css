@@ -1,29 +1,4 @@
 @media screen {
-  /* ── Glass utility classes ─────────────────────────────────────── */
-  .glass {
-    backdrop-filter: blur(10px) saturate(1.1) brightness(1.05);
-    -webkit-backdrop-filter: blur(10px) saturate(1.1) brightness(1.05);
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), inset 0 -10px 25px rgba(0, 0, 0, 0.12);
-  }
-
-  .glassCircle {
-    border-radius: var(--radius-circle);
-  }
-
-  .glassPill {
-    border-radius: var(--radius-circle);
-  }
-
-  .glassPanel {
-    border-radius: var(--radius-xl);
-  }
-
-  .glassCard {
-    border-radius: var(--radius-xxxl);
-  }
-  /* ─────────────────────────────────────────────────────────────── */
 
   .homeSection {
     width: 100%;
@@ -472,6 +447,103 @@
   .socialIcon:hover {
     background: rgba(255, 255, 255, 0.3);
   }
+
+  .skeletonLine,
+  .skeletonCircle,
+  .skeletonDot,
+  .skeletonDotWide {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.12) 25%,
+      rgba(255, 255, 255, 0.28) 50%,
+      rgba(255, 255, 255, 0.12) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear; /* reuses global @keyframes shimmer */
+    flex-shrink: 0;
+  }
+ 
+  /* ── Hero title lines ── */
+  .skeletonTitle {
+    height: 32px;
+    width: 85%;
+    border-radius: 6px;
+  }
+ 
+  .skeletonTitleShort {
+    height: 32px;
+    width: 55%;
+    border-radius: 6px;
+    animation-delay: 0.1s;
+  }
+ 
+  /* ── Body text lines ── */
+  .skeletonText {
+    height: 14px;
+    width: 100%;
+    border-radius: 4px;
+    animation-delay: 0.15s;
+  }
+ 
+  .skeletonTextShort {
+    height: 14px;
+    width: 65%;
+    border-radius: 4px;
+    animation-delay: 0.2s;
+  }
+ 
+  /* ── Phone number placeholder ── */
+  .skeletonPhone {
+    height: 14px;
+    width: 130px;
+    border-radius: 4px;
+  }
+ 
+  /* ── Avatar circle in book-appointment row ── */
+  .skeletonAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-circle);
+  }
+ 
+  /* ── Small avatar circles in social-proof stack ── */
+  .skeletonAvatarSm {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-circle);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin-right: -10px;
+  }
+ 
+  /* ── Social-proof text lines ── */
+  .skeletonProofCount {
+    height: 13px;
+    width: 130px;
+    border-radius: 4px;
+  }
+ 
+  .skeletonStars {
+    height: 12px;
+    width: 90px;
+    border-radius: 4px;
+    animation-delay: 0.1s;
+  }
+ 
+  /* ── Feature dots placeholder ── */
+  .skeletonDot {
+    height: 4px;
+    width: 8px;
+    border-radius: var(--radius-circle);
+    opacity: 0.4;
+  }
+ 
+  /* ── Banner nav dots placeholder ── */
+  .skeletonDotWide {
+    height: 4px;
+    width: 80px;
+    border-radius: var(--radius-circle);
+    opacity: 0.35;
+  }
 }
 
 @media only screen and (min-width: 48em) {
@@ -558,4 +630,7 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
+    .skeletonTitle  { height: 48px; }
+  .skeletonTitleShort { height: 48px; }
 }
