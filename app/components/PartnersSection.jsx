@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -5,25 +6,25 @@ import { useEffect } from "react";
 import styles from "@/app/styles/partners.module.css";
 import { usePartnersStore } from "@/app/store/Partners";
 
+function SkeletonTrack() {
+  return (
+    <section className={styles.partnersSection}>
+      <div className={styles.skeletonTrack}>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((i) => (
+          <div key={i} className={`${styles.skeletonPill} skeleton`} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function PartnersSection() {
   const { partners, loading, fetchPartners } = usePartnersStore();
 
   useEffect(() => { fetchPartners(); }, [fetchPartners]);
 
-  if (loading) {
-    return (
-      <section className={styles.partnersSection}>
-        <div className={styles.skeletonTrack}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((i) => (
-            <div key={i} className={`${styles.skeletonPill} skeleton`} />
-          ))}
-        </div>
-      </section>
-    );
-  }
-
-  // Loaded but no partners — render nothing
-  if (partners.length === 0) return null;
+  // Loading or no data — always show skeleton
+  if (loading || partners.length === 0) return <SkeletonTrack />;
 
   const loopItems = [...partners, ...partners, ...partners];
 
