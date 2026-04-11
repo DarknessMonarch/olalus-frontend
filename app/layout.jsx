@@ -230,7 +230,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
       </head>
-      <body className={`${inter.variable} ${poppins.variable} ${inter.className}`}>
+      <body className={`${inter.variable} ${poppins.variable} ${inter.className}`} suppressHydrationWarning>
         <Script
           id="google-translate-init"
           strategy="afterInteractive"

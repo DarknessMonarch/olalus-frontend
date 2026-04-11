@@ -219,7 +219,7 @@ export default function Home() {
 
           {/* Social proof / reviews */}
           <div className={styles.socialProof}>
-            {statsLoaded && all.length > 0 ? (
+            {statsLoaded && approvedComments.length > 0 ? (
               <>
                 <div className={styles.avatarStack}>
                   {reviewerInitials.map((letter, i) => (

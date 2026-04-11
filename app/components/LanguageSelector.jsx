@@ -29,7 +29,21 @@ const LANGUAGES = [
   { code: "uk", label: "Українська" },
 ];
 
+function setGoogTransCookie(langCode) {
+  const value = langCode === "en" ? "/en/en" : `/en/${langCode}`;
+  document.cookie = `googtrans=${value};path=/`;
+  document.cookie = `googtrans=${value};path=/;domain=${window.location.hostname}`;
+}
+
+function getGoogTransCookie() {
+  const match = document.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);
+  if (!match) return null;
+  const parts = match[1].split("/");
+  return parts[2] || null;
+}
+
 function switchLanguage(langCode) {
+  setGoogTransCookie(langCode);
   const select = document.querySelector(".goog-te-combo");
   if (!select) return false;
   select.value = langCode;
@@ -41,6 +55,14 @@ export default function LanguageSelector() {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(LANGUAGES[0]);
   const wrapRef = useRef(null);
+
+  useEffect(() => {
+    const saved = getGoogTransCookie();
+    if (saved && saved !== "en") {
+      const match = LANGUAGES.find((l) => l.code === saved);
+      if (match) setSelected(match);
+    }
+  }, []);
 
   useEffect(() => {
     const handler = (e) => {
