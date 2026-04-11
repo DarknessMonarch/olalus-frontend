@@ -46,116 +46,11 @@
     gap: 16px;
   }
 
-  .card {
-    border: 1px solid #e5e7eb;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    transition: box-shadow var(--transition-normal);
-  }
-
-  .card:hover {
-    box-shadow: var(--shadow-light);
-  }
-
-  .cardHeader {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 20px;
-    background: var(--primary-color);
-  }
-
-  .cardNumber {
-    width: 30px;
-    height: 30px;
-    border-radius: var(--radius-circle);
-    background: var(--gradient-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--font-size-xxs);
-    font-weight: var(--font-weight-bold);
-    color: var(--primary-color);
-    flex-shrink: 0;
-    font-family: var(--font-family-heading);
-  }
-
-  .cardTitle {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    color: var(--background-color);
-    line-height: var(--leading-snug);
-  }
-
-  .cardBody {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .cardBody p {
+  .para {
     font-size: var(--font-size-xs);
     color: #6b7280;
     line-height: var(--leading-relaxed);
     margin: 0;
-  }
-
-  .list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin: 4px 0 0;
-  }
-
-  .list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: var(--font-size-xs);
-    color: #6b7280;
-    line-height: var(--leading-relaxed);
-  }
-
-  .listDot {
-    width: 6px;
-    height: 6px;
-    border-radius: var(--radius-circle);
-    background: var(--gradient-primary);
-    flex-shrink: 0;
-    margin-top: 7px;
-  }
-
-  .contactBox {
-    background: var(--gradient-primary);
-    border-radius: var(--radius-xl);
-    padding: 28px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .contactBox p {
-    font-size: var(--font-size-xs);
-    color: var(--gold-text-on-gradient);
-    line-height: var(--leading-relaxed);
-    margin: 0;
-  }
-
-  .contactBox a {
-    color: var(--gold-text-dark);
-    font-weight: var(--font-weight-semibold);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .contactTitle {
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-bold);
-    color: var(--gold-text-on-gradient);
-    margin-bottom: 4px;
   }
 }
 
@@ -166,20 +61,6 @@
     min-height: var(--section-min-height);
   }
 
-  .cardBody {
-    padding: 24px 28px;
-  }
-
-  .content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: start;
-  }
-
-  .contactBox {
-    grid-column: 1 / -1;
-  }
 }
 
 @media only screen and (min-width: 64.063em) {

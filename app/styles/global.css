@@ -332,16 +332,7 @@
     border: 0;
   }
 
-  /* Hide Google Translate toolbar without breaking the translation engine.
-     display:none kills the iframe — use off-screen positioning instead.      */
-  .goog-te-banner-frame {
-    position: fixed !important;
-    top: -9999px !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
-  }
-
+  .goog-te-banner-frame,
   .goog-te-balloon-frame,
   .goog-te-menu-frame,
   #goog-gt-tt,
@@ -349,8 +340,15 @@
     display: none !important;
   }
 
-  body {
+  body > .skiptranslate {
+    display: none !important;
+  }
+
+  body,
+  body.translated-ltr,
+  body.translated-rtl {
     top: 0 !important;
+    margin-top: 0 !important;
   }
 }
 

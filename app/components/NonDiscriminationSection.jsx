@@ -5,6 +5,20 @@ import styles from "@/app/styles/policy.module.css";
 import SectionLabel from "@/app/components/ui/SectionLabel";
 import { usePolicyStore } from "@/app/store/Policy";
 
+function parseParagraphs(html) {
+  if (!html) return [];
+  const stripped = html
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/p>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"');
+  return stripped.split(/\n{1,}/).map((s) => s.trim()).filter(Boolean);
+}
+
 export default function NonDiscriminationSection() {
   const { policies, loading, fetchPolicy } = usePolicyStore();
   const policy = policies["non-discrimination"];
@@ -24,6 +38,8 @@ export default function NonDiscriminationSection() {
     );
   }
 
+  const paragraphs = parseParagraphs(policy?.content);
+
   return (
     <section className={styles.policySection}>
       <div className={styles.header}>
@@ -32,11 +48,12 @@ export default function NonDiscriminationSection() {
           <p className={styles.meta}>Effective Date: {policy.effectiveDate}</p>
         )}
       </div>
-      {policy?.content && (
-        <div
-          className={styles.content}
-          dangerouslySetInnerHTML={{ __html: policy.content }}
-        />
+      {paragraphs.length > 0 && (
+        <div className={styles.content}>
+          {paragraphs.map((para, i) => (
+            <p key={i} className={styles.para}>{para}</p>
+          ))}
+        </div>
       )}
     </section>
   );

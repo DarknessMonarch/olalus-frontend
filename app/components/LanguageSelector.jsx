@@ -29,12 +29,6 @@ const LANGUAGES = [
   { code: "uk", label: "Українська" },
 ];
 
-function setGoogTransCookie(langCode) {
-  const value = langCode === "en" ? "/en/en" : `/en/${langCode}`;
-  document.cookie = `googtrans=${value};path=/`;
-  document.cookie = `googtrans=${value};path=/;domain=${window.location.hostname}`;
-}
-
 function getGoogTransCookie() {
   const match = document.cookie.match(/(?:^|;\s*)googtrans=([^;]+)/);
   if (!match) return null;
@@ -42,13 +36,12 @@ function getGoogTransCookie() {
   return parts[2] || null;
 }
 
-function switchLanguage(langCode) {
-  setGoogTransCookie(langCode);
-  const select = document.querySelector(".goog-te-combo");
-  if (!select) return false;
-  select.value = langCode;
-  select.dispatchEvent(new Event("change", { bubbles: true }));
-  return true;
+function applyLanguage(langCode) {
+  const value = `/en/${langCode}`;
+  const domain = window.location.hostname;
+  document.cookie = `googtrans=${value}; path=/`;
+  document.cookie = `googtrans=${value}; path=/; domain=.${domain}`;
+  window.location.reload();
 }
 
 export default function LanguageSelector() {
@@ -79,15 +72,9 @@ export default function LanguageSelector() {
   }, []);
 
   const handleSelect = (lang) => {
-    setSelected(lang);
+    if (lang.code === selected.code) { setOpen(false); return; }
     setOpen(false);
-
-    if (!switchLanguage(lang.code)) {
-      let tries = 0;
-      const id = setInterval(() => {
-        if (switchLanguage(lang.code) || ++tries > 20) clearInterval(id);
-      }, 300);
-    }
+    applyLanguage(lang.code);
   };
 
   return (
