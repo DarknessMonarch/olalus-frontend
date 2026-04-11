@@ -100,6 +100,44 @@
     font-size: var(--font-size-xs);
     color: var(--gold-text-on-gradient);
   }
+
+  .skeletonHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .skeletonLabel {
+    height: 14px;
+    width: 70px;
+    border-radius: var(--radius-circle);
+  }
+
+  .skeletonHeading {
+    height: 30px;
+    width: 55%;
+    max-width: 280px;
+    border-radius: var(--radius-sm);
+  }
+
+  .skeletonPara {
+    height: 70px;
+    border-radius: var(--radius-sm);
+  }
+
+  .skeletonTab {
+    width: 150px;
+    min-width: 150px;
+    height: 150px;
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+
+  .skeletonPanel {
+    height: 150px;
+    border-radius: 0;
+  }
 }
 
 @media only screen and (min-width: 48em) {

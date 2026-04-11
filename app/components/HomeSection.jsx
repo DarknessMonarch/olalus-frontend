@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useCommentsStore } from "@/app/store/Comments";
-import { useTestimonialsStore } from "@/app/store/Testimonials";
 import { useBannersStore } from "@/app/store/Banners";
 import { useAboutStore } from "@/app/store/About";
 import styles from "@/app/styles/home.module.css";
@@ -17,7 +16,6 @@ import { LiquidGlass } from "@liquidglass/react";
 
 export default function Home() {
   const { commentStats, approvedComments, fetchCommentStats, fetchApprovedComments } = useCommentsStore();
-  const { testimonials, fetchTestimonials } = useTestimonialsStore();
   const { banners, fetchBanners } = useBannersStore();
   const { about, fetchAbout } = useAboutStore();
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
@@ -26,18 +24,16 @@ export default function Home() {
   useEffect(() => {
     fetchCommentStats();
     fetchApprovedComments();
-    fetchTestimonials();
     fetchBanners();
     fetchAbout();
-  }, [fetchAbout, fetchApprovedComments, fetchBanners, fetchCommentStats, fetchTestimonials]);
+  }, [fetchAbout, fetchApprovedComments, fetchBanners, fetchCommentStats]);
 
   const currentBanner = banners.length ? banners[currentBannerIndex] || banners[0] : null;
 
   const appointmentAvatar = about?.appointmentAvatar || null;
   const features = about?.appointmentFeatures?.length ? about.appointmentFeatures : [];
 
-  const all = [...approvedComments, ...testimonials];
-  const reviewerInitials = all.slice(0, 4).map((r) => r.name?.charAt(0).toUpperCase() || "?");
+  const reviewerInitials = approvedComments.slice(0, 4).map((r) => r.name?.charAt(0).toUpperCase() || "?");
 
   const rating = commentStats?.count > 0 ? commentStats.averageRating : null;
   const filledStars = rating ? Math.round(rating) : 0;

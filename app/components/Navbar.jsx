@@ -141,7 +141,7 @@ function NavbarContent() {
         <div className={styles.mobileNav}>
           <LiquidGlass width="100%" height="fit-content" {...GLASS_PROPS}>
             <div className={styles.mobileNavInner}>
-              <Image onClick={goHome} src={Logo} alt="Logo" height={50} style={{ cursor: "pointer" }} />
+              <Image onClick={goHome} src={Logo} alt="Logo" height={50} priority style={{ cursor: "pointer" }} />
               <button className={styles.hamburger} onClick={() => setMobileOpen(true)} aria-label="Open menu">
                 <MenuIcon />
               </button>
@@ -149,7 +149,7 @@ function NavbarContent() {
           </LiquidGlass>
         </div>
 
-        <Image onClick={goHome} src={Logo} alt="Logo" height={60} className={styles.desktopLogo} style={{ cursor: "pointer" }} />
+        <Image onClick={goHome} src={Logo} alt="Logo" height={60} priority className={styles.desktopLogo} style={{ cursor: "pointer" }} />
 
         <div className={styles.navContainer}>
           {renderNavLinks()}

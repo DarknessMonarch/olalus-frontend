@@ -11,58 +11,67 @@ import SectionLabel from "@/app/components/ui/SectionLabel";
 import { useAboutStore } from "@/app/store/About";
 import { useContactStore } from "@/app/store/Contact";
 
-const CHECK_ITEMS = [
-  "Residential care and community support tailored to individual needs",
-  "Nursing and respite care for families in need",
-  "Household assistance and community participation programs",
-  "All services delivered by trained, certified professionals",
-];
+function AboutSkeleton() {
+  return (
+    <>
+      <section className={styles.aboutContent}>
+        <div className={styles.aboutLeft}>
+          <div className={`${styles.skeletonFill} skeleton`} />
+          <div className={`${styles.card} ${styles.cardTop} skeleton`} />
+          <div className={`${styles.card} ${styles.cardBottom} skeleton`} />
+        </div>
+        <div className={styles.aboutRight}>
+          <div className={`${styles.skeletonLabel} skeleton`} />
+          <div className={`${styles.skeletonHeading} skeleton`} />
+          <div className={styles.checkList}>
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className={`${styles.skeletonCheck} skeleton`} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-const DEFAULT_MISSION_PARAGRAPHS = [
-  "Olalus Community Health Care Services is dedicated to providing the highest quality, client-centered, cost-effective home and community care solutions that promote independent living that enhance client's quality of life in the comfort and safety of their own homes.",
-];
-
-const DEFAULT_VISION_BULLETS = [
-  "To be known and valued for providing the highest standard of in-home and community health care services.",
-  "To be the provider of choice in the community.",
-  "To be known as a business and company that embraces people with disabilities as equal partners and valued citizens.",
-];
+      <section className={styles.aboutMission}>
+        <div className={styles.aboutMissionInner}>
+          {[0, 1].map((ri) => (
+            <div key={ri} className={styles.aboutRow}>
+              <div className={styles.aboutImage}>
+                <div className={`${styles.skeletonFill} skeleton`} />
+              </div>
+              <div className={styles.aboutMissionCard}>
+                <div className={styles.aboutMissionCardHeader}>
+                  <div className={`${styles.skeletonLabel} skeleton`} />
+                  <div className={`${styles.skeletonHeading} skeleton`} />
+                </div>
+                <div className={styles.aboutMissionCardInner}>
+                  {[...Array(3)].map((_, j) => (
+                    <div key={j} className={`${styles.skeletonLine} skeleton`} />
+                  ))}
+                  <div className={`${styles.skeletonLineShort} skeleton`} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
 
 export default function AboutSection() {
   const { about, fetchAbout } = useAboutStore();
-  const { submit, loading: submitting } = useContactStore();
+  const { submit } = useContactStore();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  useEffect(() => {
-    fetchAbout();
-  }, [fetchAbout]);
+  useEffect(() => { fetchAbout(); }, [fetchAbout]);
 
-  const missionHeading = about?.missionHeading || "Who we are";
-  const missionParagraphs = about?.missionParagraphs?.length
-    ? about.missionParagraphs
-    : DEFAULT_MISSION_PARAGRAPHS;
-  const missionImage =
-    about?.missionImage ||
-    "https://images.pexels.com/photos/5327654/pexels-photo-5327654.jpeg";
+  if (!about) return <AboutSkeleton />;
 
-  const visionHeading = about?.visionHeading || "Our Vision";
-  const visionBullets = about?.visionBullets?.length
-    ? about.visionBullets
-    : DEFAULT_VISION_BULLETS;
-  const visionImage =
-    about?.visionImage ||
-    "https://images.pexels.com/photos/7446987/pexels-photo-7446987.jpeg";
-
-  const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  const handleChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      toast.error("Please fill all fields");
-      return;
-    }
+    if (!form.name || !form.email || !form.message) { toast.error("Please fill all fields"); return; }
     const data = await submit(form);
     if (data.success) {
       toast.success("Message sent successfully!");
@@ -77,41 +86,31 @@ export default function AboutSection() {
       <section className={styles.aboutContent}>
         <div className={styles.aboutLeft}>
           <AppImage
-            src={visionImage}
+            src={about.overviewImage}
             alt="Our team"
             sizes="(min-width: 48em) 40vw, 100vw"
           />
-
           <div className={`${styles.card} ${styles.cardTop}`}>
             <div className={styles.cardStat}>
-              <h1>300 +</h1>
+              <h1>{about.statsCareTakers}</h1>
               <span>Care Takers</span>
             </div>
-            <div className={styles.cardicon}>
-              <AccountIcon />
-            </div>
+            <div className={styles.cardicon}><AccountIcon /></div>
           </div>
           <div className={`${styles.card} ${styles.cardBottom}`}>
             <div className={styles.cardStat}>
-              <h1>11 +</h1>
+              <h1>{about.statsYears}</h1>
               <span>Years of Experience</span>
             </div>
-            <div className={styles.cardicon}>
-              <ExperienceIcon />
-            </div>
+            <div className={styles.cardicon}><ExperienceIcon /></div>
           </div>
         </div>
 
         <div className={styles.aboutRight}>
-          <SectionLabel text="About us" heading={missionHeading} />
-          <p>
-            Olalus Community Healthcare Services is dedicated to providing
-            exceptional home care that empowers individuals to live safely and
-            independently. We believe every person deserves dignified,
-            professional care tailored to their unique needs.
-          </p>
+          <SectionLabel text="About us" heading={about.aboutHeading} />
+          <p>{about.introParagraph}</p>
           <div className={styles.checkList}>
-            {CHECK_ITEMS.map((item, i) => (
+            {about.checkItems?.map((item, i) => (
               <div key={i} className={styles.checkItem}>
                 <CheckIcon className={styles.checkIcon} />
                 <span>{item}</span>
@@ -125,45 +124,30 @@ export default function AboutSection() {
         <div className={styles.aboutMissionInner}>
           <div className={styles.aboutRow}>
             <div className={styles.aboutImage}>
-              <AppImage
-                src={missionImage}
-                alt="Mission"
-                sizes="(min-width: 48em) 40vw, 100vw"
-              />
+              <AppImage src={about.missionImage} alt="Mission" sizes="(min-width: 48em) 40vw, 100vw" />
             </div>
             <div className={styles.aboutMissionCard}>
               <div className={styles.aboutMissionCardHeader}>
-                <SectionLabel text="Our Mission" heading={missionHeading}/>
+                <SectionLabel text="Our Mission" heading={about.missionHeading} />
               </div>
-
               <div className={styles.aboutMissionCardInner}>
-                {missionParagraphs.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
+                {about.missionParagraphs?.map((p, i) => <p key={i}>{p}</p>)}
               </div>
             </div>
           </div>
           <div className={styles.aboutRow}>
             <div className={styles.aboutMissionCard}>
               <div className={styles.aboutMissionCardHeader}>
-                <SectionLabel text="Our aim" heading={visionHeading}/>
+                <SectionLabel text="Our aim" heading={about.visionHeading} />
               </div>
-
               <div className={styles.aboutMissionCardInner}>
-                  {visionBullets.map((b, i) => (
-                    <li key={i}>
-                      <CheckIcon className={styles.checkIcon} />
-                      {b}
-                    </li>
-                  ))}
+                {about.visionBullets?.map((b, i) => (
+                  <li key={i}><CheckIcon className={styles.checkIcon} />{b}</li>
+                ))}
               </div>
             </div>
             <div className={styles.aboutImage}>
-              <AppImage
-                src={visionImage}
-                alt="Vision"
-                sizes="(min-width: 48em) 40vw, 100vw"
-              />
+              <AppImage src={about.visionImage} alt="Vision" sizes="(min-width: 48em) 40vw, 100vw" />
             </div>
           </div>
         </div>

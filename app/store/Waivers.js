@@ -3,15 +3,15 @@ import { create } from "zustand";
 const SERVER_API = process.env.NEXT_PUBLIC_SERVER_API;
 
 export const useWaiversStore = create((set) => ({
-  waivers: [],
+  waiverSection: null,
   loading: false,
 
   fetchWaivers: async () => {
     try {
       set({ loading: true });
-      const res = await fetch(`${SERVER_API}/waiver`);
+      const res = await fetch(`${SERVER_API}/waiver/section`);
       const data = await res.json();
-      if (data.success) set({ waivers: data.data });
+      if (data.success) set({ waiverSection: data.data });
     } catch {
       /* silent */
     } finally {

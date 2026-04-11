@@ -155,6 +155,42 @@
     font-size: var(--font-size-xs);
     align-items: center;
   }
+
+  .skeletonFill {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .skeletonLabel {
+    height: 14px;
+    width: 80px;
+    border-radius: var(--radius-circle);
+  }
+
+  .skeletonHeading {
+    height: 28px;
+    width: 60%;
+    max-width: 240px;
+    border-radius: var(--radius-sm);
+  }
+
+  .skeletonLine {
+    height: 13px;
+    border-radius: var(--radius-sm);
+  }
+
+  .skeletonLineShort {
+    height: 13px;
+    width: 55%;
+    border-radius: var(--radius-sm);
+  }
+
+  .skeletonCheck {
+    height: 16px;
+    width: 78%;
+    border-radius: var(--radius-sm);
+  }
 }
 
 @media only screen and (min-width: 48em) {

@@ -131,14 +131,14 @@
     gap: 8px;
     padding: var(--padding-xl);
     border-radius: var(--radius-lg);
-    background: #f0fdf4;
-    border: 1px solid #86efac;
+    background: var(--gold-tint);
+    border: 1px solid var(--gold-accent);
     align-items: center;
     text-align: center;
   }
 
-  .successMsg h4 { color: #166534; font-size: var(--font-size-xl); }
-  .successMsg p { color: #166534; font-size: var(--font-size-xxs); }
+  .successMsg h4 { color: var(--gold-text-dark); font-size: var(--font-size-xl); }
+  .successMsg p { color: var(--gold-text-dark); font-size: var(--font-size-xxs); }
 
   .note {
     font-size: var(--font-size-xxs);

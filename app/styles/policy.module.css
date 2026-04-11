@@ -18,6 +18,18 @@
     text-align: center;
   }
 
+  .skeletonLabel {
+    width: 100px;
+    height: 20px;
+    border-radius: 8px;
+  }
+
+  .skeletonHeading {
+    width: 260px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
   .meta {
     font-size: var(--font-size-xs);
     color: #6b7280;

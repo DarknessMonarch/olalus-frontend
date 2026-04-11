@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useAppointmentsStore } from "@/app/store/Appointments";
 import { useServicesStore } from "@/app/store/Services";
-import { useTestimonialsStore } from "@/app/store/Testimonials";
 import { useCommentsStore } from "@/app/store/Comments";
 import FormInput from "@/app/components/ui/FormInput";
 import SectionLabel from "@/app/components/ui/SectionLabel";
@@ -37,16 +36,14 @@ function TestimonialSkeleton() {
 export default function AppointmentSection() {
   const { submit, loading } = useAppointmentsStore();
   const { services, fetchServices } = useServicesStore();
-  const { testimonials, fetchTestimonials } = useTestimonialsStore();
   const { approvedComments, fetchApprovedComments } = useCommentsStore();
   const [activeTab, setActiveTab] = useState(0);
   const [form, setForm] = useState(EMPTY_CONSULTATION);
 
   useEffect(() => {
     fetchServices();
-    fetchTestimonials();
     fetchApprovedComments();
-  }, [fetchApprovedComments, fetchServices, fetchTestimonials]);
+  }, [fetchApprovedComments, fetchServices]);
 
   const handleTabChange = (i) => {
     setActiveTab(i);
@@ -73,10 +70,7 @@ export default function AppointmentSection() {
     }
   };
 
-  const all = [...approvedComments, ...testimonials];
-  // Only loaded once both stores have responded (either has data or is empty array — not undefined)
-  const testimonialsLoaded = Array.isArray(testimonials) && Array.isArray(approvedComments);
-  const displayTestimonials = all.slice(0, 2);
+  const displayTestimonials = approvedComments.slice(0, 2);
 
   return (
     <section id="appointment" className={styles.appointmentSection}>
@@ -137,7 +131,7 @@ export default function AppointmentSection() {
           </div>
 
           <div className={styles.testimonialList}>
-            {!testimonialsLoaded ? (
+            {!Array.isArray(approvedComments) ? (
               <>
                 <TestimonialSkeleton />
                 <TestimonialSkeleton />

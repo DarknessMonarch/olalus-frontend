@@ -169,11 +169,9 @@
     border-radius: var(--radius-sm);
   }
 
-  .skeletonRow {
+  .skeletonTrack {
     display: flex;
     gap: 16px;
-    padding: 0 var(--padding-lg);
-    overflow: hidden;
   }
 
   .skeletonCard {
@@ -191,6 +189,10 @@
   }
 
   .testimonialCard {
+    width: 300px;
+  }
+
+  .skeletonCard {
     width: 300px;
   }
 }
