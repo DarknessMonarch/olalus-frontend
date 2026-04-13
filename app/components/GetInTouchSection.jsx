@@ -21,7 +21,7 @@ const CARDS = [
   {
     icon: EmailIcon,
     label: "Email",
-    lines: ["olalusnursing@aol.com"],
+    lines: ["contact@olalusgroupllc.com"],
   },
   {
     icon: ClockIcon,

@@ -28,7 +28,7 @@ const INFO_CARDS = [
   {
     icon: EmailIcon,
     label: "Email",
-    lines: ["olalusnursing@aol.com"],
+    lines: ["contact@olalusgroupllc.com"],
   },
   {
     icon: ClockIcon,
@@ -145,7 +145,7 @@ export default function ContactSection() {
         ) : reviewSubmitted ? (
           <div className={styles.reviewSuccess}>
             <h4>Thank you for your review!</h4>
-            <p>Your comment has been submitted and is under review. It will be published once approved by our team.</p>
+            <p>Your comment has been submitted successfully.</p>
           </div>
         ) : (
           <form className={styles.contactForm} onSubmit={handleReviewSubmit}>

@@ -38,7 +38,7 @@ const socials = [
 
 const contactItems = [
   { icon: <LocationIcon className={styles.contactIcon} />, text: "320 Macdade Blvd., Suite 103 Collingdale, PA 19023" },
-  { icon: <EmailIcon className={styles.contactIcon} />, text: "olalusnursing@aol.com" },
+  { icon: <EmailIcon className={styles.contactIcon} />, text: "contact@olalusgroupllc.com" },
   { icon: <PhoneIcon className={styles.contactIcon} />, text: "610-237-7199 | Fax : 610-237-3488" },
 ];
 

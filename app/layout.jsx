@@ -160,7 +160,7 @@ const organizationSchema = {
       areaServed: "US",
     },
   ],
-  email: "olalusnursing@aol.com",
+  email: "contact@olalusgroupllc.com",
   telephone: "+1-610-237-7199",
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
