@@ -149,7 +149,7 @@ export default function ContactSection() {
           </div>
         ) : (
           <form className={styles.contactForm} onSubmit={handleReviewSubmit}>
-            <p className={styles.reviewNote}>Comments are reviewed before publishing. Approved comments appear on our testimonials section.</p>
+            {/* <p className={styles.reviewNote}>Comments are reviewed before publishing. Approved comments appear on our testimonials section.</p> */}
             <div className={styles.formRow}>
               <input type="text" name="name" placeholder="Your Name *" value={reviewForm.name} onChange={handleReviewChange} required />
               <input type="email" name="email" placeholder="Email (optional)" value={reviewForm.email} onChange={handleReviewChange} />
