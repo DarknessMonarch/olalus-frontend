@@ -1,36 +1,46 @@
 "use client";
 
+import { useEffect } from "react";
 import styles from "@/app/styles/getInTouch.module.css";
 import SectionLabel from "@/app/components/ui/SectionLabel";
 import { IoCallSharp as PhoneIcon } from "react-icons/io5";
 import { MdLocationOn as LocationIcon, MdEmail as EmailIcon } from "react-icons/md";
 import { FiClock as ClockIcon } from "react-icons/fi";
 import { FaQuoteLeft as QuoteIcon } from "react-icons/fa";
-
-const CARDS = [
-  {
-    icon: PhoneIcon,
-    label: "Emergency",
-    lines: ["610-237-7199", "610-237-3488"],
-  },
-  {
-    icon: LocationIcon,
-    label: "Location",
-    lines: ["320 Macdade Blvd., Suite 103", "Collingdale, PA 19023"],
-  },
-  {
-    icon: EmailIcon,
-    label: "Email",
-    lines: ["contact@olalusgroupllc.com"],
-  },
-  {
-    icon: ClockIcon,
-    label: "Working Hours",
-    lines: ["Mon-Fri 8:30am - 4:30pm"],
-  },
-];
+import { useContactInfoStore } from "@/app/store/ContactInfo";
 
 export default function GetInTouchSection() {
+  const { contactInfo, loading, fetchContactInfo } = useContactInfoStore();
+
+  useEffect(() => { fetchContactInfo(); }, [fetchContactInfo]);
+
+  const cards = [
+    {
+      icon: PhoneIcon,
+      label: "Emergency",
+      lines: loading || !contactInfo
+        ? null
+        : [contactInfo.phone, contactInfo.fax].filter(Boolean),
+    },
+    {
+      icon: LocationIcon,
+      label: "Location",
+      lines: loading || !contactInfo ? null : [contactInfo.address].filter(Boolean),
+    },
+    {
+      icon: EmailIcon,
+      label: "Email",
+      lines: loading || !contactInfo ? null : [contactInfo.email].filter(Boolean),
+    },
+    {
+      icon: ClockIcon,
+      label: "Working Hours",
+      lines: loading || !contactInfo
+        ? null
+        : [[contactInfo.workingDays, contactInfo.workingHours].filter(Boolean).join(" ")].filter(Boolean),
+    },
+  ];
+
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
@@ -39,16 +49,16 @@ export default function GetInTouchSection() {
         </div>
 
         <div className={styles.cardsRow}>
-          {CARDS.map(({ icon: Icon, label, lines }) => (
+          {cards.map(({ icon: Icon, label, lines }) => (
             <div key={label} className={styles.card}>
               <div className={styles.iconWrap}>
                 <Icon className={styles.icon} />
               </div>
               <span className={styles.cardLabel}>{label}</span>
               <div className={styles.cardLines}>
-                {lines.map((line, i) => (
-                  <span key={i}>{line}</span>
-                ))}
+                {lines === null
+                  ? <span className={`${styles.skeletonLine} skeletonGold`} />
+                  : lines.map((line, i) => <span key={i}>{line}</span>)}
               </div>
             </div>
           ))}

@@ -214,6 +214,20 @@
     font-style: italic;
   }
 
+  .skeletonLine {
+    display: block;
+    height: 14px;
+    width: 180px;
+    border-radius: var(--radius-sm);
+  }
+
+  .skeletonLineShort {
+    display: block;
+    height: 14px;
+    width: 120px;
+    border-radius: var(--radius-sm);
+  }
+
   .footerBottom {
     width: 100%;
     border-top: 1px solid rgba(17, 24, 39, 0.18);

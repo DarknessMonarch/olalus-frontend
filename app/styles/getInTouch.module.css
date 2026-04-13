@@ -78,6 +78,13 @@
     line-height: var(--leading-snug);
   }
 
+  .skeletonLine {
+    display: block;
+    height: 14px;
+    width: 160px;
+    border-radius: var(--radius-sm);
+  }
+
   .quoteSection {
     width: 100%;
     position: relative;

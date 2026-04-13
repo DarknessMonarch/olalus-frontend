@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import styles from "@/app/styles/contact.module.css";
 import SectionLabel from "@/app/components/ui/SectionLabel";
@@ -8,37 +8,16 @@ import { MdEmail as EmailIcon, MdLocationOn as LocationIcon } from "react-icons/
 import { IoCallSharp as PhoneIcon } from "react-icons/io5";
 import { FiClock as ClockIcon } from "react-icons/fi";
 import { FaStar as StarIcon } from "react-icons/fa";
+import { useContactInfoStore } from "@/app/store/ContactInfo";
 
 const RELATIONSHIP_OPTIONS = [
   "Client", "Family Member", "Client's Child", "Client's Spouse",
   "Healthcare Professional", "Community Member", "Other",
 ];
 
-const INFO_CARDS = [
-  {
-    icon: PhoneIcon,
-    label: "Emergency",
-    lines: ["610-237-7199", "610-237-3488"],
-  },
-  {
-    icon: LocationIcon,
-    label: "Location",
-    lines: ["320 Macdade Blvd., Suite 103", "Collingdale, PA 19023"],
-  },
-  {
-    icon: EmailIcon,
-    label: "Email",
-    lines: ["contact@olalusgroupllc.com"],
-  },
-  {
-    icon: ClockIcon,
-    label: "Working Hours",
-    lines: ["Mon-Fri 8:30am - 4:30pm"],
-  },
-];
-
 export default function ContactSection() {
   const [tab, setTab] = useState("contact");
+  const { contactInfo, loading, fetchContactInfo } = useContactInfoStore();
 
   const [contactForm, setContactForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [contactLoading, setContactLoading] = useState(false);
@@ -47,6 +26,8 @@ export default function ContactSection() {
   const [reviewLoading, setReviewLoading] = useState(false);
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
   const [hovered, setHovered] = useState(0);
+
+  useEffect(() => { fetchContactInfo(); }, [fetchContactInfo]);
 
   const handleContactChange = (e) => setContactForm((p) => ({ ...p, [e.target.name]: e.target.value }));
   const handleReviewChange = (e) => setReviewForm((p) => ({ ...p, [e.target.name]: e.target.value }));
@@ -104,6 +85,33 @@ export default function ContactSection() {
     }
   };
 
+  const infoCards = [
+    {
+      icon: PhoneIcon,
+      label: "Emergency",
+      lines: loading || !contactInfo
+        ? null
+        : [contactInfo.phone, contactInfo.fax].filter(Boolean),
+    },
+    {
+      icon: LocationIcon,
+      label: "Location",
+      lines: loading || !contactInfo ? null : [contactInfo.address].filter(Boolean),
+    },
+    {
+      icon: EmailIcon,
+      label: "Email",
+      lines: loading || !contactInfo ? null : [contactInfo.email].filter(Boolean),
+    },
+    {
+      icon: ClockIcon,
+      label: "Working Hours",
+      lines: loading || !contactInfo
+        ? null
+        : [[contactInfo.workingDays, contactInfo.workingHours].filter(Boolean).join(" ")].filter(Boolean),
+    },
+  ];
+
   return (
     <section className={styles.contactSection}>
       <div className={styles.contactHeader}>
@@ -149,7 +157,6 @@ export default function ContactSection() {
           </div>
         ) : (
           <form className={styles.contactForm} onSubmit={handleReviewSubmit}>
-            {/* <p className={styles.reviewNote}>Comments are reviewed before publishing. Approved comments appear on our testimonials section.</p> */}
             <div className={styles.formRow}>
               <input type="text" name="name" placeholder="Your Name *" value={reviewForm.name} onChange={handleReviewChange} required />
               <input type="email" name="email" placeholder="Email (optional)" value={reviewForm.email} onChange={handleReviewChange} />
@@ -186,14 +193,16 @@ export default function ContactSection() {
         )}
 
         <div className={styles.contactInfo}>
-          {INFO_CARDS.map(({ icon: Icon, label, lines }) => (
+          {infoCards.map(({ icon: Icon, label, lines }) => (
             <div key={label} className={styles.infoCard}>
               <div className={styles.infoIconWrap}>
                 <Icon className={styles.infoIcon} />
               </div>
               <div className={styles.infoText}>
                 <span>{label}</span>
-                {lines.map((line, i) => <p key={i}>{line}</p>)}
+                {lines === null
+                  ? <p className={`${styles.skeletonLine} skeletonGold`} />
+                  : lines.map((line, i) => <p key={i}>{line}</p>)}
               </div>
             </div>
           ))}

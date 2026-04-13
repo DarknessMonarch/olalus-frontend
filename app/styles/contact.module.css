@@ -171,6 +171,13 @@
     line-height: var(--leading-snug);
   }
 
+  .skeletonLine {
+    display: block;
+    height: 14px;
+    width: 160px;
+    border-radius: var(--radius-sm);
+  }
+
   .reviewNote {
     font-size: var(--font-size-xxs);
     color: #6b7280;

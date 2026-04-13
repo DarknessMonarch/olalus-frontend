@@ -13,6 +13,7 @@ import { IoCall as PhoneIcon } from "react-icons/io5";
 import { FaXTwitter } from "react-icons/fa6";
 import MapSection from "@/app/components/MapSection";
 import { useAboutStore } from "@/app/store/About";
+import { useContactInfoStore } from "@/app/store/ContactInfo";
 
 const quickLinksLeft = [
   { href: "/", label: "Home" },
@@ -36,20 +37,23 @@ const socials = [
   { icon: <FaYoutube />, href: "https://www.youtube.com/@olalusgroupllc", label: "YouTube" },
 ];
 
-const contactItems = [
-  { icon: <LocationIcon className={styles.contactIcon} />, text: "320 Macdade Blvd., Suite 103 Collingdale, PA 19023" },
-  { icon: <EmailIcon className={styles.contactIcon} />, text: "contact@olalusgroupllc.com" },
-  { icon: <PhoneIcon className={styles.contactIcon} />, text: "610-237-7199 | Fax : 610-237-3488" },
-];
-
 export default function Footer() {
   const pathname = usePathname();
   const year = new Date().getFullYear();
   const { about, fetchAbout } = useAboutStore();
+  const { contactInfo, loading, fetchContactInfo } = useContactInfoStore();
 
   useEffect(() => {
     fetchAbout();
-  }, [fetchAbout]);
+    fetchContactInfo();
+  }, [fetchAbout, fetchContactInfo]);
+
+  const phone = contactInfo?.phone;
+  const fax = contactInfo?.fax;
+  const email = contactInfo?.email;
+  const address = contactInfo?.address;
+  const workingDays = contactInfo?.workingDays;
+  const workingHours = contactInfo?.workingHours;
 
   return (
     <>
@@ -75,12 +79,24 @@ export default function Footer() {
             <div className={styles.brandDivider} />
 
             <div className={styles.contactList}>
-              {contactItems.map((item, i) => (
-                <div key={i} className={styles.contactItem}>
-                  {item.icon}
-                  <span>{item.text}</span>
-                </div>
-              ))}
+              <div className={styles.contactItem}>
+                <LocationIcon className={styles.contactIcon} />
+                {loading || !address
+                  ? <span className={`${styles.skeletonLine} skeletonGold`} />
+                  : <span>{address}</span>}
+              </div>
+              <div className={styles.contactItem}>
+                <EmailIcon className={styles.contactIcon} />
+                {loading || !email
+                  ? <span className={`${styles.skeletonLine} skeletonGold`} />
+                  : <span>{email}</span>}
+              </div>
+              <div className={styles.contactItem}>
+                <PhoneIcon className={styles.contactIcon} />
+                {loading || !phone
+                  ? <span className={`${styles.skeletonLine} skeletonGold`} />
+                  : <span>{phone}{fax ? ` | Fax : ${fax}` : ""}</span>}
+              </div>
             </div>
 
             <div className={styles.socialRow}>
@@ -131,8 +147,12 @@ export default function Footer() {
             <h4 className={styles.colHeading}>Opening Hours</h4>
             <div className={styles.hoursCard}>
               <div className={styles.hoursRow}>
-                <span className={styles.hoursDay}>Monday &ndash; Friday</span>
-                <span className={styles.hoursTime}>8:30 Am &ndash; 4:30 Pm</span>
+                {loading || !workingDays
+                  ? <span className={`${styles.skeletonLine} skeletonGold`} />
+                  : <span className={styles.hoursDay}>{workingDays}</span>}
+                {loading || !workingHours
+                  ? <span className={`${styles.skeletonLineShort} skeletonGold`} />
+                  : <span className={styles.hoursTime}>{workingHours}</span>}
               </div>
               <p className={styles.hoursNote}>Closed on weekends &amp; public holidays</p>
             </div>
