@@ -23,9 +23,9 @@ const poppins = Poppins({
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://olalusgroupllc.com";
-const SITE_NAME = "Olalus Community Health Care Services";
+const SITE_NAME = "Change it to Olalus group LLC | Trusted healthcare services";
 const DESCRIPTION =
-  "Olalus Community Health Care Services provides client-centered, in-home care in Pennsylvania. Services include personal care, nursing, respite care, dementia care, and community support — delivered by certified professionals.";
+  "Change it to Olalus group LLC | Trusted healthcare services provides client-centered, in-home care in Pennsylvania. Services include personal care, nursing, respite care, dementia care, and community support — delivered by certified professionals.";
 const BANNER_URL = `${SITE_URL}/assets/banner.png`;
 const KEYWORDS = [
   "home care Pennsylvania",
@@ -50,7 +50,7 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
 
   title: {
-    default: `${SITE_NAME} | Trusted Home Care in Pennsylvania`,
+    default: `${SITE_NAME}`,
     template: `%s | ${SITE_NAME}`,
   },
   applicationName: "Olalus Group",
@@ -74,21 +74,21 @@ export const metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | Trusted Home Care in Pennsylvania`,
+    title: `${SITE_NAME}`,
     description: DESCRIPTION,
     images: [
       {
         url: BANNER_URL,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} — Trusted Home Care`,
+        alt: `${SITE_NAME}`,
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | Trusted Home Care in Pennsylvania`,
+    title: `${SITE_NAME}`,
     description: DESCRIPTION,
     images: [BANNER_URL],
     creator: "@olalusgroupllc",
