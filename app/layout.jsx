@@ -39,7 +39,11 @@ const KEYWORDS = [
   "senior care Collingdale PA",
   "home health aide",
   "Olalus",
+  "Olalus Group",
+  "Olalus Group LLC",
   "olalusgroup",
+  "olalusgroupllc",
+  "olalus.com",
 ];
 
 export const viewport = {
@@ -173,6 +177,12 @@ const organizationSchema = {
     "https://twitter.com/olalusgroupllc",
     "https://www.linkedin.com/company/olalusgroupllc",
     "https://www.youtube.com/@olalusgroupllc",
+    "https://olalusgroupllc.com",
+    "https://www.olalusgroupllc.com",
+    "https://olalusgroup.com",
+    "https://www.olalusgroup.com",
+    "https://olalus.com",
+    "https://www.olalus.com",
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
