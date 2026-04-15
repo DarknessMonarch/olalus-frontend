@@ -25,7 +25,7 @@ const poppins = Poppins({
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://olalusgroupllc.com";
 const SITE_NAME = "Olalus Group LLC | Trusted healthcare services";
 const DESCRIPTION =
-  "Olalus group LLC | Trusted healthcare services provides client-centered, in-home care in Pennsylvania. Services include personal care, nursing, respite care, dementia care, and community support — delivered by certified professionals.";
+  "Olalus Group LLC | Trusted healthcare services provides client-centered, in-home care in Pennsylvania. Services include personal care, nursing, respite care, dementia care, and community support — delivered by certified professionals.";
 const BANNER_URL = `${SITE_URL}/assets/banner.png`;
 const KEYWORDS = [
   "home care Pennsylvania",
