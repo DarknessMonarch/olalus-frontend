@@ -3,10 +3,11 @@
 import styles from "@/app/styles/map.module.css";
 import SectionLabel from "@/app/components/ui/SectionLabel";
 
-const DEFAULT_ADDRESS = "320 Macdade Blvd., Suite 103, Collingdale, PA 19023";
-
 export default function MapSection({ branches }) {
-  const address = branches?.[0]?.address || DEFAULT_ADDRESS;
+  const address = branches?.[0]?.address;
+
+  if (!address) return null;
+
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(address)}&output=embed&iwloc=&z=14`;
 
   return (
