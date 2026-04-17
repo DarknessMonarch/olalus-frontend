@@ -1,10 +1,18 @@
 "use client";
 
+import { useEffect } from "react";
 import styles from "@/app/styles/map.module.css";
 import SectionLabel from "@/app/components/ui/SectionLabel";
+import { useContactInfoStore } from "@/app/store/ContactInfo";
 
-export default function MapSection({ branches }) {
-  const address = branches?.[0]?.address;
+export default function MapSection() {
+  const { contactInfo, fetchContactInfo } = useContactInfoStore();
+
+  useEffect(() => {
+    fetchContactInfo();
+  }, [fetchContactInfo]);
+
+  const address = contactInfo?.address;
 
   if (!address) return null;
 
