@@ -3,19 +3,24 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import styles from "@/app/styles/subscribe.module.css";
+import { useNewsletterStore } from "@/app/store/Newsletter";
 
 export default function SubscribeSection() {
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { subscribe, loading } = useNewsletterStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email.trim()) { toast.error("Please enter your email"); return; }
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 800));
-    toast.success("Subscribed! Thank you for staying connected.");
-    setEmail("");
-    setLoading(false);
+    const res = await subscribe(email.trim());
+    if (res.success) {
+      toast.success("Subscribed! Check your inbox for a confirmation email.");
+      setEmail("");
+    } else if (res.message?.toLowerCase().includes("already")) {
+      toast.info("This email is already subscribed.");
+    } else {
+      toast.error(res.message || "Something went wrong. Please try again.");
+    }
   };
 
   return (
